@@ -6,8 +6,10 @@
     <session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/Auslandsverwaltung</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.username">dbweb</property>
-        <property name="connection.password">dbweb</property>
+        <property name="connection.username">root</property>
+        <property name="connection.password">1234</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.show_sql">true</property>
         <mapping class="de.hsb.auslandsverwaltung.ErfahrungsberichtEntity"/>
         <mapping class="de.hsb.auslandsverwaltung.FakultaetEntity"/>
         <mapping class="de.hsb.auslandsverwaltung.LandEntity"/>

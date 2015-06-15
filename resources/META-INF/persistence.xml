@@ -1,0 +1,21 @@
+<persistence>
+    <persistence-unit name="PersistenceUnit">
+        <class>de.hsb.auslandsverwaltung.ErfahrungsberichtEntity</class>
+        <class>de.hsb.auslandsverwaltung.FakultaetEntity</class>
+        <class>de.hsb.auslandsverwaltung.LandEntity</class>
+        <class>de.hsb.auslandsverwaltung.StudentEntity</class>
+        <class>de.hsb.auslandsverwaltung.StudiengangEntity</class>
+        <class>de.hsb.auslandsverwaltung.StudienplatzEntity</class>
+        <properties>
+        <property name="hibernate.connection.driver_class"
+                  value="com.mysql.jdbc.Driver"/>
+        <property name="hibernate.connection.url"
+                  value="jdbc:mysql://localhost:3306/Auslandsverwaltung/"/>
+        <property name="hibernate.connection.username" value="root"/>
+        <property name="hibernate.connection.password" value="1234"/>
+        <property name="hibernate.dialect"
+                  value="org.hibernate.dialect.MySQL5Dialect"/>
+        <property name="hibernate.show_sql" value="true"/>
+        <properties>
+    </persistence-unit>
+</persistence>

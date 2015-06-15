@@ -1,3 +1,5 @@
+import de.hsb.auslandsverwaltung.LandEntity;
+import de.hsb.auslandsverwaltung.StudentEntity;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
@@ -7,6 +9,9 @@ import org.hibernate.metadata.ClassMetadata;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.Map;
 
 /**
@@ -34,7 +39,7 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
         final Session session = getSession();
-        try {
+        try {/*
             System.out.println("querying all the managed entities...");
             final Map metadataMap = session.getSessionFactory().getAllClassMetadata();
             for (Object key : metadataMap.keySet()) {
@@ -45,9 +50,17 @@ public class Main {
                 for (Object o : query.list()) {
                     System.out.println("  " + o);
                 }
-            }
+            }*/
+
+            StudentEntity student = (StudentEntity) session.load(StudentEntity.class, 1);
+
+            System.out.println("Land: " + student.getMatrikelNummer());
+
         } finally {
             session.close();
         }
+
+
+
     }
 }
