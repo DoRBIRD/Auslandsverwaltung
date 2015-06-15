@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - Auslandsverwaltung@localhost" uuid="ae688bae-7cb1-4f21-a64f-cea7522a2268">
+    <database-info product="MySQL" version="5.6.24" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
+    <schema name="" catalog="Auslandsverwaltung"/>
+    <table name="Erfahrungsbericht" schema="" catalog="Auslandsverwaltung" type="TABLE">
+      <column name="idErfahrungsbericht" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Betreff" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Inhalt" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="Link" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Student_idStudent" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idErfahrungsbericht"/>
+      <foreign-key name="fk_Erfahrungsbericht_Student1" columns="Student_idStudent" ref-table="Student" ref-schema="" ref-catalog="Auslandsverwaltung" ref-columns="idStudent" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_Erfahrungsbericht_Student1_idx" unique="false" columns="Student_idStudent"/>
+    </table>
+    <table name="Fakultaet" schema="" catalog="Auslandsverwaltung" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="Studiengang_Fakultaet" table="Studiengang" schema="" catalog="Auslandsverwaltung" columns="Fakultaet"/>
+    </table>
+    <table name="Land" schema="" catalog="Auslandsverwaltung" type="TABLE">
+      <column name="Name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="Name"/>
+    </table>
+    <table name="Student" schema="" catalog="Auslandsverwaltung" type="TABLE">
+      <column name="idStudent" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Vorname" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Nachname" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
+      <column name="MatrikelNummer" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12" remarks="RGllc2UgTMOkbmdlLCBkYSBrZWluZSBBaG51bmcgd2FzIGltIFJlc3QgZGVyIFdlbHQgc28gZ2VtYWNodCB3aXJk"/>
+      <column name="Email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="idStudent"/>
+      <exported-key name="fk_Erfahrungsbericht_Student1" table="Erfahrungsbericht" schema="" catalog="Auslandsverwaltung" columns="Student_idStudent"/>
+      <exported-key name="fk_Studienplatz_Student1" table="Studienplatz" schema="" catalog="Auslandsverwaltung" columns="Student_idStudent"/>
+      <index name="Email_UNIQUE" unique="true" columns="Email"/>
+    </table>
+    <table name="Studiengang" schema="" catalog="Auslandsverwaltung" type="TABLE">
+      <column name="idStudiengang" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Bezeichnung" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Fakultaet" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Univerität_idUniverität" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idStudiengang"/>
+      <foreign-key name="Studiengang_Fakultaet" columns="Fakultaet" ref-table="Fakultaet" ref-schema="" ref-catalog="Auslandsverwaltung" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_Studiengang_Univerität1" columns="Univerität_idUniverität" ref-table="Universitaet" ref-schema="" ref-catalog="Auslandsverwaltung" ref-columns="idUniveritaet" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_Studiengang_Univerität1_idx" unique="false" columns="Univerität_idUniverität"/>
+      <index name="Studiengang_Fakultaet_idx" unique="false" columns="Fakultaet"/>
+    </table>
+    <table name="Studienplatz" schema="" catalog="Auslandsverwaltung" type="TABLE">
+      <column name="idStudienplatz" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="StartDatum" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <column name="EndDatum" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91" remarks="V2lyZCBmw7xyIGVpbiBlaW56ZWxuZXMgU2Vtc2V0ZXIgZWluZ2V0cmFnZW4sIGRhbmFjaCBlaW4gbmV1ZXIgUGxhdHo="/>
+      <column name="Verfuegbarkeit" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <column name="Student_idStudent" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Univerität_idUniverität" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="idStudienplatz"/>
+      <foreign-key name="fk_Studienplatz_Student1" columns="Student_idStudent" ref-table="Student" ref-schema="" ref-catalog="Auslandsverwaltung" ref-columns="idStudent" update-rule="3" delete-rule="2" deferrability="2"/>
+      <foreign-key name="fk_Studienplatz_Univerität1" columns="Univerität_idUniverität" ref-table="Universitaet" ref-schema="" ref-catalog="Auslandsverwaltung" ref-columns="idUniveritaet" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="fk_Studienplatz_Student1_idx" unique="false" columns="Student_idStudent"/>
+      <index name="fk_Studienplatz_Univerität1_idx" unique="false" columns="Univerität_idUniverität"/>
+    </table>
+  </data-source>
+</component>
