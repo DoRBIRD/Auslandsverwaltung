@@ -51,10 +51,13 @@ public class Main {
                     System.out.println("  " + o);
                 }
             }*/
+            Query query = session.createQuery("FROM LandEntity");
+            query.list();
+
 
             StudentEntity student = (StudentEntity) session.load(StudentEntity.class, 1);
 
-            System.out.println("Land: " + student.getMatrikelNummer());
+            System.out.println("Matrikel nr von 1: " + student.getMatrikelNummer());
 
         } finally {
             session.close();
