@@ -12,6 +12,7 @@ import org.hibernate.service.ServiceRegistryBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -51,8 +52,12 @@ public class Main {
                     System.out.println("  " + o);
                 }
             }*/
-            Query query = session.createQuery("FROM LandEntity");
-            query.list();
+            String hql = "FROM de.hsb.auslandsverwaltung.StudentEntity";
+            Query query = session.createQuery(hql);
+            List results = query.list();
+            for(StudentEntity o:(List<StudentEntity>) results){
+                System.out.println(o.getVorname()+" "+o.getNachname()+" "+o.getMatrikelNummer());
+            }
 
 
             StudentEntity student = (StudentEntity) session.load(StudentEntity.class, 1);
