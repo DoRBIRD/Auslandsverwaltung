@@ -52,12 +52,33 @@ public class Main {
                     System.out.println("  " + o);
                 }
             }*/
-            String hql = "FROM de.hsb.auslandsverwaltung.StudentEntity";
+            String hql = "FROM StudentEntity";
             Query query = session.createQuery(hql);
             List results = query.list();
             for(StudentEntity o:(List<StudentEntity>) results){
                 System.out.println(o.getVorname()+" "+o.getNachname()+" "+o.getMatrikelNummer());
             }
+
+
+            String hql1 = "FROM LandEntity ";
+            Query query1 = session.createQuery(hql1);
+            List results1 = query1.list();
+            for(LandEntity o:(List<LandEntity>) results1){
+                System.out.println(o.getName());
+            }
+
+            session.beginTransaction();
+            LandEntity land1 = new LandEntity();
+            land1.setName("TEST");
+            session.save(land1);
+            session.getTransaction().commit();
+            Thread.sleep(5000);
+
+            System.out.println("Matrikel nr von 1: " + land1.getName());
+
+            session.beginTransaction();
+            session.delete(land1);
+            session.getTransaction().commit();
 
 
             StudentEntity student = (StudentEntity) session.load(StudentEntity.class, 1);
