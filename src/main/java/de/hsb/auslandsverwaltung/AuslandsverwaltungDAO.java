@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.management.Query;
 import java.util.List;
 
 @Repository
@@ -26,10 +27,13 @@ public class AuslandsverwaltungDAO {
 	}
 
 	@Transactional
-	public StudentEntity findBy() {
+	public StudentEntity findByUsernameAndPassword(String username, String password) {
 		Session session = sessionFactory.getCurrentSession();
-
-		return (student)session.createQuery("from student").list().get(0);
+		String hql="from student S where S.username = :username, S.password = :password";
+		org.hibernate.Query query1 = session.createQuery(hql);
+		query1.setParameter("username",username);
+		query1.setParameter("password",password);
+		return (StudentEntity)query1.list().get(0);
 	}
 
 

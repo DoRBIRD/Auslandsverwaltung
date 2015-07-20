@@ -1,3 +1,10 @@
-de\hsb\auslandsverwaltung\ModelViewController.class
+de\hsb\auslandsverwaltung\LandEntity.class
 de\hsb\auslandsverwaltung\student.class
 de\hsb\auslandsverwaltung\AuslandsverwaltungDAO.class
+de\hsb\auslandsverwaltung\FakultaetEntity.class
+de\hsb\auslandsverwaltung\ErfahrungsberichtEntity.class
+de\hsb\auslandsverwaltung\StudienplatzEntity.class
+de\hsb\auslandsverwaltung\ModelViewController.class
+de\hsb\auslandsverwaltung\UniversitaetEntity.class
+de\hsb\auslandsverwaltung\StudentEntity.class
+de\hsb\auslandsverwaltung\StudiengangEntity.class
