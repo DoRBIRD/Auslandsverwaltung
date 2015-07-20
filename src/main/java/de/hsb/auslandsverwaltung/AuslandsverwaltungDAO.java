@@ -22,8 +22,7 @@ public class AuslandsverwaltungDAO {
 	@Transactional
 	public List<student> findAll() {
 		Session session = sessionFactory.getCurrentSession();
-		List studenten = session.createQuery("from student").list();
-		return studenten;
+		return session.createQuery("from student").list();
 	}
 
 

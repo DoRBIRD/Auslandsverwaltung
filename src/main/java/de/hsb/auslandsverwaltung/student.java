@@ -45,7 +45,7 @@ public class student {
     public int getMatrikelnummer() {
         return Matrikelnummer;
     }
-    public void setMatrikelnummer(double price) {
+    public void setMatrikelnummer(int Matrikelnummer) {
         this.Matrikelnummer = Matrikelnummer;
     }
     public String getEmail() {
