@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/auslandsverwaltung.iml" filepath="$PROJECT_DIR$/auslandsverwaltung.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Auslandsverwaltung.iml" filepath="$PROJECT_DIR$/Auslandsverwaltung.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
     </modules>
   </component>
 </project>
