@@ -25,5 +25,13 @@ public class AuslandsverwaltungDAO {
 		return session.createQuery("from student").list();
 	}
 
+	@Transactional
+	public StudentEntity findBy() {
+		Session session = sessionFactory.getCurrentSession();
+
+		return (student)session.createQuery("from student").list().get(0);
+	}
+
+
 
 }

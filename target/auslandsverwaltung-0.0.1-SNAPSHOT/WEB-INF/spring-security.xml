@@ -9,7 +9,7 @@
               <intercept-url pattern="/home*" access="ROLE_ADMIN" />
        </http>
 
-    <!--
+
        <authentication-manager>
               <authentication-provider>
                      <user-service>
@@ -17,14 +17,14 @@
                      </user-service>
               </authentication-provider>
        </authentication-manager>
-       -->
 
-    <authentication-manager>
-        <authentication-provider>
-            <jdbc-user-service data-source-ref="myDataSource"
-                               users-by-username-query=
-                                       "select Username,Password from student"/>
-        </authentication-provider>
-    </authentication-manager>
-
-</beans:beans>  
+    <!--
+        <authentication-manager>
+            <authentication-provider>
+                <jdbc-user-service data-source-ref="myDataSource"
+                                   users-by-username-query=
+                                           "select :Username,Password from student"/>
+            </authentication-provider>
+        </authentication-manager>
+    -->
+    </beans:beans>
