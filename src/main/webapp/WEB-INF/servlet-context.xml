@@ -12,7 +12,7 @@
 
        <!-- Map simple view name such as "test" into /WEB-INF/views/test.jsp -->
        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-              <property name="prefix" value="/WEB-INF/" />
+              <property name="prefix" value="/" />
               <property name="suffix" value=".jsp" />
        </bean>
 

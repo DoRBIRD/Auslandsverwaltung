@@ -27,9 +27,15 @@ public class AuslandsverwaltungDAO {
 	}
 
 	@Transactional
+	public List<UniversitaetEntity> findAllUniversitaeten() {
+		Session session = sessionFactory.getCurrentSession();
+		return session.createQuery("from universitaet").list();
+	}
+
+	@Transactional
 	public StudentEntity findByUsernameAndPassword(String username, String password) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql="from student S where S.username = :username, S.password = :password";
+		String hql="from student S where S.username = :username AND S.password = :password";
 		org.hibernate.Query query1 = session.createQuery(hql);
 		query1.setParameter("username",username);
 		query1.setParameter("password",password);
