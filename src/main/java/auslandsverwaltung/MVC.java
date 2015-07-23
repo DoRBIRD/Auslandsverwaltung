@@ -43,7 +43,7 @@ public class MVC {
         return model;
     }
 
-    @RequestMapping(value = {"/hochschulliste"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/hochschulliste", "hochschulliste", "hochschulliste.jsp"}, method = RequestMethod.GET)
     public ModelAndView hochschulliste() {
         ModelAndView model = new ModelAndView();
         List<UniversitaetEntity> universities = dao.findAllUniversities();

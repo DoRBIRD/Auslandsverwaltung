@@ -12,10 +12,8 @@
   <title>hoschschulliste</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 </head>
-<body>
-<jsp:include page="header.jsp"><jsp:param name="pageName" value="Student"/></jsp:include>
-<%@ include file="menu.jsp" %>
 
+<body>
 <form action="hochschule.jsp">>
   <select name="universities">
     <c:forEach var="u" items="${universities}">
