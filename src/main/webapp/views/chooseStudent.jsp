@@ -42,10 +42,10 @@
   <form action="student.jsp">>
     <select name="student">
       <c:forEach var="s" items="${studenten}">
-        <option value"${s.id}">${s.id}- ${s.vorname} - ${s.nachname}</li>
+        <option value"${s.id}">${s.id}- ${s.vorname} - ${s.nachname}></option>
       </c:forEach>
-      <option value="1">1 Jonas Oja (Test student)</option>
-      <option value="2">2 niklas Hinte(Test student)</option>
+      <!--<option value="1">1 Jonas Oja (Test student)</option>
+      <option value="2">2 niklas Hinte(Test student)</option>-->
     </select>
     <input type="submit" value="Sign in">
   </form>

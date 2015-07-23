@@ -2,7 +2,6 @@ package auslandsverwaltung;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,7 +19,7 @@ public class MVC {
         List<StudentEntity> studenten = dao.findAllStudents();
         model.addObject("studenten", studenten);
         model.addObject("test", "test");
-        model.setViewName("index");
+        model.setViewName("views/index");
         model.addObject(DAO.class);
         return model;
     }
@@ -30,7 +29,7 @@ public class MVC {
 
         // do something before returning view name
 
-        return "home";
+        return "views/home";
     }
 
     @RequestMapping(value = {"/chooseStudent"}, method = RequestMethod.GET)
@@ -39,11 +38,21 @@ public class MVC {
         List<StudentEntity> studenten = dao.findAllStudents();
         model.addObject("studenten", studenten);
         model.addObject("test","test");
-        model.setViewName("chooseStudent");
+        model.setViewName("views/chooseStudent");
         model.addObject(DAO.class);
         return model;
     }
 
+    @RequestMapping(value = {"/hochschulliste"}, method = RequestMethod.GET)
+    public ModelAndView hochschulliste() {
+        ModelAndView model = new ModelAndView();
+        List<UniversitaetEntity> universities = dao.findAllUniversities();
+        model.addObject("universities", universities);
+        model.addObject("test","test");
+        model.setViewName("views/hochschulliste");
+        model.addObject(DAO.class);
+        return model;
+    }
 
 /*
     @RequestMapping(method = RequestMethod.GET)

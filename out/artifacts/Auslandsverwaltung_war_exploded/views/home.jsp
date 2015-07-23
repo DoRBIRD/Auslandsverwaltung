@@ -25,7 +25,8 @@
 
 <h4>${string}</h4>
 <h2>
-    Click To | <a href="<c:url value="j_spring_security_logout" />">Logout</a>
+    <%@ include file="hochschulliste.jsp" %>
+    <%@ include file="chooseStudent.jsp" %>
 </h2>
 
 </body>
