@@ -53,7 +53,12 @@ public class MVC {
         model.addObject(DAO.class);
         return model;
     }
-
+    @RequestMapping(value = {"/student"}, method = RequestMethod.GET)
+    public ModelAndView student() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("views/student");
+        return model;
+    }
 /*
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
