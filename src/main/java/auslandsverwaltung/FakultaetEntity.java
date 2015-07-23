@@ -6,13 +6,14 @@ import javax.persistence.*;
  * Created by steven on 15.06.15.
  */
 @Entity
-@Table(name = "Fakultaet", schema = "", catalog = "Auslandsverwaltung")
+@Table(name = "fakultaet", schema = "", catalog = "Auslandsverwaltung")
 public class FakultaetEntity {
+
     private int id;
-    private String name;
+    private String Name;
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue
     public int getId() {
         return id;
     }
@@ -21,33 +22,11 @@ public class FakultaetEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "Name")
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        FakultaetEntity that = (FakultaetEntity) o;
-
-        if (id != that.id) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+        Name = name;
     }
 }

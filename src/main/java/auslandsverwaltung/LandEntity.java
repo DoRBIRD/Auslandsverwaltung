@@ -1,42 +1,21 @@
 package auslandsverwaltung;
-
-import javax.persistence.Column;
+import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
  * Created by steven on 15.06.15.
  */
 @Entity
-@Table(name = "Land", schema = "", catalog = "Auslandsverwaltung")
+@Table(name = "land", schema = "", catalog = "Auslandsverwaltung")
 public class LandEntity {
-    private String name;
-
+    private String Name;
     @Id
-    @Column(name = "Name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        LandEntity that = (LandEntity) o;
-
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return name != null ? name.hashCode() : 0;
-    }
+    @GeneratedValue
+    public String getName() {return Name;}
+    public void setName(String Name) {this.Name = Name;}
 }

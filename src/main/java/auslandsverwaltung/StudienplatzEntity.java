@@ -7,101 +7,62 @@ import java.sql.Date;
  * Created by steven on 15.06.15.
  */
 @Entity
-@Table(name = "Studienplatz", schema = "", catalog = "Auslandsverwaltung")
+@Table(name = "studienplatz", schema = "", catalog = "Auslandsverwaltung")
 public class StudienplatzEntity {
-    private int idStudienplatz;
-    private Date startDatum;
-    private Date endDatum;
-    private byte verfuegbarkeit;
-    private Integer studentIdStudent;
-    private int univeritaetIdUniveritaet;
+    private int id;
+    private Date StartDatum;
+    private Date EndDatum;
+    private byte Verfuegbarkeit;
+    private Integer Student_id;
+    private int univeritaet_id;
 
     @Id
-    @Column(name = "idStudienplatz")
-    public int getIdStudienplatz() {
-        return idStudienplatz;
+    @GeneratedValue
+    public int getId() {
+        return id;
     }
 
-    public void setIdStudienplatz(int idStudienplatz) {
-        this.idStudienplatz = idStudienplatz;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Basic
-    @Column(name = "StartDatum")
     public Date getStartDatum() {
-        return startDatum;
+        return StartDatum;
     }
 
     public void setStartDatum(Date startDatum) {
-        this.startDatum = startDatum;
+        StartDatum = startDatum;
     }
 
-    @Basic
-    @Column(name = "EndDatum")
     public Date getEndDatum() {
-        return endDatum;
+        return EndDatum;
     }
 
     public void setEndDatum(Date endDatum) {
-        this.endDatum = endDatum;
+        EndDatum = endDatum;
     }
 
-    @Basic
-    @Column(name = "Verfuegbarkeit")
     public byte getVerfuegbarkeit() {
-        return verfuegbarkeit;
+        return Verfuegbarkeit;
     }
 
     public void setVerfuegbarkeit(byte verfuegbarkeit) {
-        this.verfuegbarkeit = verfuegbarkeit;
+        Verfuegbarkeit = verfuegbarkeit;
     }
 
-    @Basic
-    @Column(name = "Student_idStudent")
-    public Integer getStudentIdStudent() {
-        return studentIdStudent;
+    public Integer getStudent_id() {
+        return Student_id;
     }
 
-    public void setStudentIdStudent(Integer studentIdStudent) {
-        this.studentIdStudent = studentIdStudent;
+    public void setStudent_id(Integer student_id) {
+        Student_id = student_id;
     }
 
-    @Basic
-    @Column(name = "Univeritaet_idUniveritaet")
-    public int getUniveritaetIdUniveritaet() {
-        return univeritaetIdUniveritaet;
+    public int getUniveritaet_id() {
+        return univeritaet_id;
     }
 
-    public void setUniveritaetIdUniveritaet(int univeritaetIdUniveritaet) {
-        this.univeritaetIdUniveritaet = univeritaetIdUniveritaet;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        StudienplatzEntity that = (StudienplatzEntity) o;
-
-        if (idStudienplatz != that.idStudienplatz) return false;
-        if (univeritaetIdUniveritaet != that.univeritaetIdUniveritaet) return false;
-        if (verfuegbarkeit != that.verfuegbarkeit) return false;
-        if (endDatum != null ? !endDatum.equals(that.endDatum) : that.endDatum != null) return false;
-        if (startDatum != null ? !startDatum.equals(that.startDatum) : that.startDatum != null) return false;
-        if (studentIdStudent != null ? !studentIdStudent.equals(that.studentIdStudent) : that.studentIdStudent != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = idStudienplatz;
-        result = 31 * result + (startDatum != null ? startDatum.hashCode() : 0);
-        result = 31 * result + (endDatum != null ? endDatum.hashCode() : 0);
-        result = 31 * result + (int) verfuegbarkeit;
-        result = 31 * result + (studentIdStudent != null ? studentIdStudent.hashCode() : 0);
-        result = 31 * result + univeritaetIdUniveritaet;
-        return result;
+    public void setUniveritaet_id(int univeritaet_id) {
+        this.univeritaet_id = univeritaet_id;
     }
 }

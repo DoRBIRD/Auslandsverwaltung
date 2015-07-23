@@ -25,11 +25,4 @@ public class DAO {
         List studenten = session.createQuery("from StudentEntity").list();
         return studenten;
     }
-
-    @Transactional
-    public List<student> findAll() {
-        Session session = sessionFactory.getCurrentSession();
-        List studenten = session.createQuery("from student").list();
-        return studenten;
-    }
 }

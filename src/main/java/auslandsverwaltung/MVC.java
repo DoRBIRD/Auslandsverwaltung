@@ -13,22 +13,24 @@ import java.util.List;
 @RequestMapping("/")
 public class MVC {
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView defaultCall( ModelAndView model ) {
-        //Call the default method directly, or use the 'forward' String. Example:
-        return index();
-    }
-
     @Autowired private DAO dao;
-    @RequestMapping(value = {"", "/", "/index"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/index", "/index.jsp"}, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         List<StudentEntity> studenten = dao.findAllStudents();
         model.addObject("studenten", studenten);
-        model.addObject("test","test");
+        model.addObject("test", "test");
         model.setViewName("index");
         model.addObject(DAO.class);
         return model;
+    }
+
+    @RequestMapping("/")
+    public String visitHome() {
+
+        // do something before returning view name
+
+        return "home";
     }
 
     @RequestMapping(value = {"/chooseStudent"}, method = RequestMethod.GET)

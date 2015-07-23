@@ -6,74 +6,44 @@ import javax.persistence.*;
  * Created by steven on 15.06.15.
  */
 @Entity
-@Table(name = "Studiengang", schema = "", catalog = "Auslandsverwaltung")
+@Table(name = "studiengang", schema = "", catalog = "Auslandsverwaltung")
 public class StudiengangEntity {
-    private int idStudiengang;
-    private String bezeichnung;
-    private Integer fakultaet;
-    private int univeritaetIdUniveritaet;
+    private int id;
+    private String Bezeichnung;
+    private Integer Fakultaet;
+    private int univeritaetId;
 
     @Id
-    @Column(name = "idStudiengang")
-    public int getIdStudiengang() {
-        return idStudiengang;
+    @GeneratedValue
+    public int getId() {
+        return id;
     }
 
-    public void setIdStudiengang(int idStudiengang) {
-        this.idStudiengang = idStudiengang;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Basic
-    @Column(name = "Bezeichnung")
     public String getBezeichnung() {
-        return bezeichnung;
+        return Bezeichnung;
     }
 
     public void setBezeichnung(String bezeichnung) {
-        this.bezeichnung = bezeichnung;
+        Bezeichnung = bezeichnung;
     }
 
-    @Basic
-    @Column(name = "Fakultaet")
     public Integer getFakultaet() {
-        return fakultaet;
+        return Fakultaet;
     }
 
     public void setFakultaet(Integer fakultaet) {
-        this.fakultaet = fakultaet;
+        Fakultaet = fakultaet;
     }
 
-    @Basic
-    @Column(name = "Univeritaet_idUniveritaet")
-    public int getUniveritaetIdUniveritaet() {
-        return univeritaetIdUniveritaet;
+    public int getUniveritaetId() {
+        return univeritaetId;
     }
 
-    public void setUniveritaetIdUniveritaet(int univeritaetIdUniveritaet) {
-        this.univeritaetIdUniveritaet = univeritaetIdUniveritaet;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        StudiengangEntity that = (StudiengangEntity) o;
-
-        if (idStudiengang != that.idStudiengang) return false;
-        if (univeritaetIdUniveritaet != that.univeritaetIdUniveritaet) return false;
-        if (bezeichnung != null ? !bezeichnung.equals(that.bezeichnung) : that.bezeichnung != null) return false;
-        if (fakultaet != null ? !fakultaet.equals(that.fakultaet) : that.fakultaet != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = idStudiengang;
-        result = 31 * result + (bezeichnung != null ? bezeichnung.hashCode() : 0);
-        result = 31 * result + (fakultaet != null ? fakultaet.hashCode() : 0);
-        result = 31 * result + univeritaetIdUniveritaet;
-        return result;
+    public void setUniveritaetId(int univeritaetId) {
+        this.univeritaetId = univeritaetId;
     }
 }

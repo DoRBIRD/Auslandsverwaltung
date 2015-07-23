@@ -19,6 +19,6 @@
       <li>${s.id}- ${s.vorname} - ${s.nachname}</li>
     </c:forEach>
   </ul>
-    Hello World!
+    Hello World
   </body>
 </html>
