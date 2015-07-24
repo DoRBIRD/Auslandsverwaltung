@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1058449122">
-    <data-source source="LOCAL" name="MySQL - Auslandsverwaltung@localhost" uuid="ae688bae-7cb1-4f21-a64f-cea7522a2268">
+  <component name="DataSourceManagerImpl" format="xml" hash="2001980230">
+    <data-source source="LOCAL" name="MySQL - Auslandsverwaltung@87.106.49.122" read-only="true" uuid="feee80e8-efff-475a-8ad7-d0b9558226dd">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/Auslandsverwaltung</jdbc-url>
+      <jdbc-url>jdbc:mysql://87.106.49.122:3306/Auslandsverwaltung</jdbc-url>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
