@@ -21,8 +21,5 @@
     </c:forEach>
   </select>
 </form>
-
-
-
 </body>
 </html>

@@ -1,22 +1,25 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Jonas
-  Date: 23.07.2015
-  Time: 14:13
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%String pageName = "Home";%>
 <html>
 <head>
-    <title>Layout test</title>
-    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+  <title><%=pageName%></title>
+  <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
-
-  <div id="contentbereich"><%@ include file="LoginBereich.jsp" %></div>
-  <div id="menubreich"><%@ include file="menu.jsp" %></div>
-  <div id="headerbereich"><jsp:include page="header.jsp"><jsp:param name="pageName" value="Home"/></jsp:include></div>
-  <div id="footerbereich"></div>
+<div id="contentbereich">
+  <%@ include file="LoginBereich.jsp" %>
+  <h2>
+    <jsp:include page="${request.contextPath}/hochschulliste"></jsp:include>
+  </h2>
+</div>
+<div id="menubreich"><%@ include file="menu.jsp" %></div>
+<div id="headerbereich"><h1 id="menu">Auslandsverwaltung - <%=pageName%></h1></div>
+<div id="footerbereich"></div>
 </body>
 </html>
+
+
+
+

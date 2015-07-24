@@ -8,7 +8,7 @@
   <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
-<div id="contentbereich">//Content in dieses div!
+<div id="contentbereich">
   <%@ include file="LoginBereich.jsp" %>
   <h2>
     <jsp:include page="${request.contextPath}/hochschulliste"></jsp:include>
