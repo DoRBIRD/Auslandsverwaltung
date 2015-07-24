@@ -26,10 +26,19 @@ public class MVC {
 
     @RequestMapping("/")
     public String visitHome() {
-
-        // do something before returning view name
-
+        // mappt "/" auf home
         return "views/home";
+    }
+
+    @RequestMapping(value = {"/studentenliste"}, method = RequestMethod.GET)
+    public ModelAndView studentenListe() {
+        ModelAndView model = new ModelAndView();
+        List<StudentEntity> studenten = dao.findAllStudents();
+        model.addObject("studenten", studenten);
+        model.addObject("test","test");
+        model.setViewName("views/studentenliste");
+        model.addObject(DAO.class);
+        return model;
     }
 
     @RequestMapping(value = {"/chooseStudent"}, method = RequestMethod.GET)
@@ -53,6 +62,7 @@ public class MVC {
         model.addObject(DAO.class);
         return model;
     }
+
     @RequestMapping(value = {"/student"}, method = RequestMethod.GET)
     public ModelAndView student() {
         ModelAndView model = new ModelAndView();

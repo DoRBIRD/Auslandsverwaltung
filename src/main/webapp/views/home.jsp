@@ -7,19 +7,17 @@
     <title><%=pageName%></title>
     <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
-<body>
-<div id="contentbereich">//Content in dieses div!
-    <%@ include file="LoginBereich.jsp" %>
-    <h2>
-        <jsp:include page="${request.contextPath}/hochschulliste"></jsp:include>
-    </h2>
-    asd
-</div>
-<div id="menubreich"><%@ include file="menu.jsp" %></div>
-<div id="headerbereich"><h1 id="menu">Auslandsverwaltung - <%=pageName%></h1></div>
-<div id="footerbereich"></div>
-asdasd
-</body>
+    <body>
+    <div id="contentbereich">
+        <%@ include file="LoginBereich.jsp" %>
+        <h2>
+            <jsp:include page="${request.contextPath}/hochschulliste"></jsp:include>
+        </h2>
+    </div>
+        <div id="menubreich"><%@ include file="menu.jsp" %></div>
+        <div id="headerbereich"><h1 id="menu">Auslandsverwaltung - <%=pageName%></h1></div>
+        <div id="footerbereich"></div>
+    </body>
 </html>
 
 

@@ -5,15 +5,20 @@
   Time: 12:35
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
   <title>Studentliste</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
 </head>
 <body>
-<jsp:include page="header.jsp"><jsp:param name="pageName" value="Student"/></jsp:include>
-<%@ include file="menu.jsp" %>
+
+<ul>
+  <c:forEach var="s" items="${studenten}">
+    <li>${s.id}- ${s.vorname} - ${s.nachname}</li>
+  </c:forEach>
+</ul>
 
 </body>
 </html>

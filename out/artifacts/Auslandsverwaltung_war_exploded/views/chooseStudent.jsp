@@ -14,12 +14,8 @@
   <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
-<div id="contentbereich">//Content in dieses div!
-  <ul>
-    <c:forEach var="s" items="${studenten}">
-      <li>${s.id}- ${s.vorname} - ${s.nachname}</li>
-    </c:forEach>
-  </ul>
+<div id="contentbereich">
+
   <form action="student">>
     <select name="student">
       <c:forEach var="s" items="${studenten}">

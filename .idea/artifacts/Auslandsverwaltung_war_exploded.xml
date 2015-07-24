@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="Auslandsverwaltung:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/Auslandsverwaltung_war_exploded</output-path>
+  <artifact type="exploded-war" name="auslandsverwaltung:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/auslandsverwaltung_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="Auslandsverwaltung" />
+          <element id="module-output" name="auslandsverwaltung" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-context:3.2.3.RELEASE" />
@@ -34,7 +34,7 @@
           <element id="library" level="project" name="Maven: log4j:log4j:1.2.14" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="Auslandsverwaltung/web/Web" />
+      <element id="javaee-facet-resources" facet="auslandsverwaltung/web/Web" />
     </root>
   </artifact>
 </component>

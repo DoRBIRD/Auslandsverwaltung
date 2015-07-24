@@ -7,7 +7,7 @@
 --%>
 <br>
 <a href="hochschulliste">Liste aller Hochschulen</a><br>
-<a href="studentenliste.jsp">Liste aller Studenten</a><br>
-<a href="student.jsp">Student</a><br>
+<a href="studentenliste">Liste aller Studenten</a><br>
+<a href="student">Student</a><br>
 <a href="chooseStudent">chooseStudent</a><br>
-<a href="hochschule.jsp">hochschule</a><br>
+<a href="hochschule">hochschule</a><br>
