@@ -7,3 +7,9 @@ h1.headerTitle {
     margin-bottom: 5px;
     border-bottom: 1px solid #000;
 }
+
+ul#navi {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
