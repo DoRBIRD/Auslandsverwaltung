@@ -14,7 +14,7 @@ public class StudienplatzEntity {
     private Date EndDatum;
     private byte Verfuegbarkeit;
     private Integer Student_id;
-    private int univeritaet_id;
+    private int universitaet_id;
 
     @Id
     @GeneratedValue
@@ -58,11 +58,11 @@ public class StudienplatzEntity {
         Student_id = student_id;
     }
 
-    public int getUniveritaet_id() {
-        return univeritaet_id;
+    public int getUniversitaet_id() {
+        return universitaet_id;
     }
 
-    public void setUniveritaet_id(int univeritaet_id) {
-        this.univeritaet_id = univeritaet_id;
+    public void setUniversitaet_id(int universitaet_id) {
+        this.universitaet_id = universitaet_id;
     }
 }

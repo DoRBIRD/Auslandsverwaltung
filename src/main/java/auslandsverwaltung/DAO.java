@@ -55,6 +55,30 @@ public class DAO {
             studiengaenge.add(findStudeiengangById(sm.getStudiengang()));
         return studiengaenge;
     }
+    @Transactional //version die gehen würde mit beziehungen in den hybernate entitys
+    public List<StudentEntity> findStudentByUniversityId(int uniId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "SELECT s.id, s.Vorname, s.Username, s.Password, s.MatrikelNummer, s.Email " +
+                "FROM StudentEntity AS s " +
+                "JOIN s.StudentMappingEntity AS sm " +
+                "JOIN sm.StudiengangEntity AS sg " +
+                "WHERE sg.universitaet_id = :uniId GROUP BY s.id";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("uniId", uniId);
+        return query.list();
+    }
+    @Transactional //schlechte version version
+    public List<StudentEntity> findStudentByUniversityId2(int uniId) {
+        Session session = sessionFactory.getCurrentSession();
+        List<StudiengangEntity> studiengangListe = findStudeiengangByUniId(uniId);
+        List<StudentEntity> studentenliste = new LinkedList<StudentEntity>();
+        for(StudiengangEntity studiengang : studiengangListe){
+            List<StudentMappingEntity> studentenMappingliste = findStudentMappingByStudiengangId(studiengang.getId());
+            for(StudentMappingEntity studentennmap : studentenMappingliste)
+                studentenliste.add(findStudentById(studentennmap.getStudent()));
+        }
+        return studentenliste;
+    }
 
 
     //---University DAO---
@@ -72,6 +96,14 @@ public class DAO {
         List universitys = query.list();
         return (universitys.isEmpty() ? null : (UniversitaetEntity) universitys.get(0));
     }
+    @Transactional
+    public  List<UniversitaetEntity> findUniversityByStandort(String standort) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from UniversitaetEntity U WHERE U.Standort = :standort";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("standort",standort);
+        return query.list();
+    }
 
     //---Land DAO---
     @Transactional
@@ -80,6 +112,17 @@ public class DAO {
         return session.createQuery("from LandEntity").list();
     }
 
+    @Transactional
+    public LandEntity findLandById(String landId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from LandEntity WHERE name = :landId";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("landId",landId);
+        List laender = query.list();
+        return (laender.isEmpty() ? null : (LandEntity) laender.get(0));
+    }
+
+
     //---StudentMapping DAO---
     @Transactional
     public List<StudentMappingEntity> findStudentMappingByStudentId(int studentId) {
@@ -87,6 +130,15 @@ public class DAO {
         String hql = "from StudentMappingEntity AS SM WHERE SM.Student = :studentId";
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("studentId",studentId);
+        List studentMapping = query.list();
+        return studentMapping;
+    }
+    @Transactional
+    public List<StudentMappingEntity> findStudentMappingByStudiengangId(int studiengangId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from StudentMappingEntity AS SM WHERE SM.Studiengang = :studiengangId";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("studiengangId",studiengangId);
         List studentMapping = query.list();
         return studentMapping;
     }
@@ -109,6 +161,24 @@ public class DAO {
         query.setParameter("uniId",uniId);
         return query.list();
     }
-
+    @Transactional
+    public List<StudiengangEntity> findAllStudiengaenge() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM StudiengangEntity").list();
+    }
+    //---Studienplatz DAO---
+    @Transactional
+    public List<StudienplatzEntity> findStudeienplatzByUniId(int uniId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from StudienplatzEntity AS SP WHERE SP.universitaet_id = :uniId";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("uniId",uniId);
+        return query.list();
+    }
+    @Transactional
+    public List<StudienplatzEntity> findAllStudienplaetze() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM StudienplatzEntity").list();
+    }
 
 }

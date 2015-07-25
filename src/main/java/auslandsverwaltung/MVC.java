@@ -48,7 +48,7 @@ public class MVC {
         List<StudentEntity> studenten = dao.findAllStudents();
         model.addObject("studenten", studenten);
         model.addObject("test","test");
-        model.setViewName("views/chooseStudent");
+        model.setViewName("views/studentenliste");
         model.addObject(DAO.class);
         return model;
     }
@@ -65,15 +65,24 @@ public class MVC {
     }
 
     @RequestMapping(value = {"hochschule"}, method = RequestMethod.GET)
-    public ModelAndView hochschule(@RequestParam(value = "universities", required = false, defaultValue = "-1") int universities) {
+    public ModelAndView hochschule(@RequestParam(value = "hochschulId", required = false, defaultValue = "-1") int universities) {
         ModelAndView model = new ModelAndView();
+
         UniversitaetEntity university = dao.findUniversityById(universities);
         model.addObject("university", university);
 
         List<StudiengangEntity> studiengangListe = dao.findStudeiengangByUniId(universities);
         model.addObject("studiengangListe",studiengangListe);
+
+        List<StudienplatzEntity> studienplatzListe = dao.findStudeienplatzByUniId(universities);
+        model.addObject("studienplatzListe",studienplatzListe);
+
+        List<StudentEntity> studentenListe = dao.findStudentByUniversityId2(universities);
+        model.addObject("studentenListe",studentenListe);
+
         model.setViewName("views/hochschule");
         model.addObject(DAO.class);
+        model.addObject("dao",dao);
         return model;
     }
 
@@ -87,6 +96,52 @@ public class MVC {
         model.setViewName("views/student");
         return model;
     }
+
+    @RequestMapping(value = {"laenderliste"}, method = RequestMethod.GET)
+    public ModelAndView laenderlist() {
+        ModelAndView model = new ModelAndView();
+        List<LandEntity> laenderListe = dao.findAllLands();
+        model.addObject("laenderListe",laenderListe);
+        model.setViewName("views/laenderliste");
+        return model;
+    }
+
+
+    @RequestMapping(value = {"land"}, method = RequestMethod.GET)
+    public ModelAndView land(@RequestParam(value = "landId", required = false, defaultValue = "-1") String landId){
+        ModelAndView model = new ModelAndView();
+        LandEntity land = dao.findLandById(landId);
+        model.addObject("land",land);
+        List<UniversitaetEntity> hochschulListe = dao.findUniversityByStandort(landId);
+        model.addObject("hochschulListe",hochschulListe);
+        model.setViewName("views/land");
+        return model;
+    }
+
+    @RequestMapping(value = {"allData"}, method = RequestMethod.GET)
+    public ModelAndView allData(){
+        ModelAndView model = new ModelAndView();
+
+        List<LandEntity> laenderListe = dao.findAllLands();
+        model.addObject("laenderListe",laenderListe);
+
+        List<UniversitaetEntity> universities = dao.findAllUniversities();
+        model.addObject("universities",universities);
+
+        List<StudentEntity> studentenliste = dao.findAllStudents();
+        model.addObject("studentenliste",studentenliste);
+
+        List<StudiengangEntity> studiengangliste = dao.findAllStudiengaenge();
+        model.addObject("studiengangliste",studiengangliste);
+
+        List<StudienplatzEntity> studienplatzliste = dao.findAllStudienplaetze();
+        model.addObject("studienplatzliste",studienplatzliste);
+
+        model.setViewName("views/allData");
+        return model;
+    }
+
+
 
     //@Autowired private DAO dao;
     @RequestMapping(value = {"login_function"}, method = RequestMethod.POST)

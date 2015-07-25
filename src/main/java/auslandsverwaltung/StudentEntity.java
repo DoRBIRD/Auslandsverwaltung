@@ -1,11 +1,8 @@
 package auslandsverwaltung;
 
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +14,7 @@ public class StudentEntity {
     @Id
     @GeneratedValue
     private int id;
-    private int Matrikelnummer;
+    private int MatrikelNummer;
     private String Vorname;
     private String Nachname;
     private String Email;
@@ -42,11 +39,11 @@ public class StudentEntity {
     public void setNachname(String Nachname) {
         this.Nachname = Nachname;
     }
-    public int getMatrikelnummer() {
-        return Matrikelnummer;
+    public int getMatrikelNummer() {
+        return MatrikelNummer;
     }
-    public void setMatrikelnummer(double price) {
-        this.Matrikelnummer = Matrikelnummer;
+    public void setMatrikelNummer(double price) {
+        this.MatrikelNummer = MatrikelNummer;
     }
     public String getEmail() {
         return Email;
