@@ -17,7 +17,7 @@
 <div id="contentbereich">
 
   <form action="student">>
-    <select name="studentId">
+    <select name="student">
       <c:forEach var="s" items="${studenten}">
         <option value="${s.id}">${s.id}- ${s.vorname} - ${s.nachname}></option>
       </c:forEach>
