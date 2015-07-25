@@ -33,7 +33,6 @@ public class DAO {
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("username", username);
         query.setParameter("password", password);
-
         List students = query.list();
         return (students.isEmpty() ? null : (StudentEntity) students.get(0));
     }
@@ -46,20 +45,60 @@ public class DAO {
         List students = query.list();
         return (students.isEmpty() ? null : (StudentEntity) students.get(0));
     }
+    @Transactional
+    public List<StudiengangEntity> findStudeiengangByStudentId(int studentId) {
+        Session session = sessionFactory.getCurrentSession();
+        List<StudentMappingEntity> studentMapping = findStudentMappingByStudentId(studentId);
+        List<StudiengangEntity> studiengaenge = null;
+        for(StudentMappingEntity sm:studentMapping)studiengaenge.add(findStudeiengangById(sm.getStudiengang()));
+        return studiengaenge;
+    }
+
+
     //---University DAO---
     @Transactional
     public List<UniversitaetEntity> findAllUniversities() {
         Session session = sessionFactory.getCurrentSession();
-        List universities = session.createQuery("from UniversitaetEntity").list();
-        return universities;
+        return session.createQuery("from UniversitaetEntity").list();
+    }
+    @Transactional
+    public UniversitaetEntity findUniversityById(int universityId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from UniversitaetEntity U WHERE U.id = :universityId";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("universityId",universityId);
+        List universitys = query.list();
+        return (universitys.isEmpty() ? null : (UniversitaetEntity) universitys.get(0));
     }
 
-    //---Land DAO
+    //---Land DAO---
     @Transactional
     public List<LandEntity> findAllLands() {
         Session session = sessionFactory.getCurrentSession();
-        List lands = session.createQuery("from LandEntity").list();
-        return lands;
+        return session.createQuery("from LandEntity").list();
     }
+
+    //---StudentMapping DAO---
+    @Transactional
+    public List<StudentMappingEntity> findStudentMappingByStudentId(int studentId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from StudentMappingEntity AS SM WHERE SM.student = :studentId";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("studentId",studentId);
+        List studentMapping = query.list();
+        return studentMapping;
+    }
+
+    //---Studiengang DAO---
+    @Transactional
+    public StudiengangEntity findStudeiengangById(int studiengangId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from StudiengangEntity AS SG WHERE SG.id = :studiengangId";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("studiengangId",studiengangId);
+        List studiengaenge = query.list();
+        return (studiengaenge.isEmpty() ? null : (StudiengangEntity) studiengaenge.get(0));
+    }
+
 
 }

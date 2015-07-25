@@ -17,8 +17,9 @@
 <form action="hochschule.jsp">>
   <select name="universities">
     <c:forEach var="u" items="${universities}">
-      <option value"${u.id}">${u.id}- ${u.name} - ${u.standort}></option>
+      <option value="${u.id}">${u.id}- ${u.name} - ${u.standort}</option>
     </c:forEach>
+    <input type="submit" value="Choose">
   </select>
 </form>
 </body>

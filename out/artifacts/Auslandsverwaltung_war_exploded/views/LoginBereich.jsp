@@ -9,7 +9,7 @@
   <tr>
 
     <td id = "login" align="left" margin="0px">
-      <form action="login_function.jsp">
+      <form action="login_function" method="post">
         Username:<br>
         <input type="text" name="username">
         <br>
@@ -20,7 +20,7 @@
       </form>
     </td>
     <td id="signin" align="left" margin="0px">
-      <form action="signin_function">
+      <form action="signin_function" method="post">
         First name:<br>
         <input type="text" name="firstname" >
         <br>

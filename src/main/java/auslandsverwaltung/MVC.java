@@ -65,10 +65,14 @@ public class MVC {
     }
 
     @RequestMapping(value = {"/student"}, method = RequestMethod.GET)
-    public ModelAndView student(@RequestParam("id") int id) {
+    public ModelAndView student(@RequestParam("studentId") int studentId) {
         ModelAndView model = new ModelAndView();
-        StudentEntity student = dao.findStudentById(id);
+        StudentEntity student = dao.findStudentById(studentId);
         model.addObject("student",student);
+        List<StudiengangEntity> sg = dao.findStudeiengangByStudentId(studentId);
+        model.addObject("studiengaenge",sg);
+        UniversitaetEntity uni = dao.findUniversityById(sg.get(0).getUniveritaetId());
+        model.addObject("uni",uni);
         model.setViewName("views/student");
         return model;
     }
@@ -80,8 +84,6 @@ public class MVC {
         ModelAndView model = new ModelAndView();
         StudentEntity student = dao.findStudentByUserPass(username, password);
         model.addObject("student",student);
-        model.addObject("testVar",username);
-        model.addObject("testVar2",password);
         model.setViewName("views/login_function");
         return model;
     }

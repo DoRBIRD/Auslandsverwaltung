@@ -9,10 +9,7 @@
 </head>
 <body>
 <div id="contentbereich">
-  <%@ include file="LoginBereich.jsp" %>
-  <h2>
-    <jsp:include page="${request.contextPath}/hochschulliste"></jsp:include>
-  </h2>
+
 </div>
 <div id="menubreich"><%@ include file="menu.jsp" %></div>
 <div id="headerbereich"><h1 id="menu">Auslandsverwaltung - <%=pageName%></h1></div>

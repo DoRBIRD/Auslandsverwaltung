@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Jonas
@@ -14,14 +15,19 @@
 <body>
 <jsp:include page="header.jsp"><jsp:param name="pageName" value="Student"/></jsp:include>
 <%@ include file="menu.jsp" %>
-<table>
-  <tr>
-    <td>
 
-      "from student where id = <%= request.getParameter("student")%>"
 
-    </td>
-  </tr>
-</table>
+  <c:if test="${student != null}">
+    ${student.id}- ${student.vorname} - ${student.nachname}
+  </c:if>
+  belegt folgende Studiengänge<br>
+  <c:forEach var="sg" items="${studiengaenge}">
+    ${sg.id}- ${sg.bezeichnung} - ${sg.fakultaet}
+  </c:forEach>
+  <br>
+  ${uni.name} - ${uni.standort}
+
+
+
 </body>
 </html>
