@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Register</button>
+                    <button type="submit" class="btn btn-default" disabled>Register</button>
                 </div>
             </div>
         </form>
