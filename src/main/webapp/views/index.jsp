@@ -4,9 +4,8 @@
     <jsp:param name="pageName" value="Willkommen"/>
 </jsp:include>
 <%@ include file="loginbereich.jsp" %>
-<h2>
-    Herzlich Willkommen
-
+<p>
+    Herzlich Willkommen<br />
     bitte wählen Sie aus der Navigation eine Aktion
-</h2>
+</p>
 <jsp:include page="fragments/footer.jsp" />

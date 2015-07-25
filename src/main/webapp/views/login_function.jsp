@@ -20,7 +20,7 @@
 
 
 </div>
-<div id="menubreich"><%@ include file="menu.jsp" %></div>
+<div id="menubreich"><%@ include file="fragments/menu.jsp" %></div>
 <div id="headerbereich"><h1 id="menu">Auslandsverwaltung - <%=pageName%></h1></div>
 <div id="footerbereich"></div>
 </body>
