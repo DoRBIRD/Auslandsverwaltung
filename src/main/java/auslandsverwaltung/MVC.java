@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -64,9 +65,24 @@ public class MVC {
     }
 
     @RequestMapping(value = {"/student"}, method = RequestMethod.GET)
-    public ModelAndView student() {
+    public ModelAndView student(@RequestParam("id") int id) {
         ModelAndView model = new ModelAndView();
+        StudentEntity student = dao.findStudentById(id);
+        model.addObject("student",student);
         model.setViewName("views/student");
+        return model;
+    }
+
+    //@Autowired private DAO dao;
+    @RequestMapping(value = {"/login_function"}, method = RequestMethod.POST)
+    public ModelAndView login_function(@RequestParam("username") String username,@RequestParam("password") String password) {
+
+        ModelAndView model = new ModelAndView();
+        StudentEntity student = dao.findStudentByUserPass(username, password);
+        model.addObject("student",student);
+        model.addObject("testVar",username);
+        model.addObject("testVar2",password);
+        model.setViewName("views/login_function");
         return model;
     }
 /*

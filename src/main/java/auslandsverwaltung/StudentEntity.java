@@ -21,6 +21,8 @@ public class StudentEntity {
     private String Vorname;
     private String Nachname;
     private String Email;
+    private String Username;
+    private String Password;
 
     /**********************************************************************/
 
@@ -52,4 +54,15 @@ public class StudentEntity {
     public void setEmail(String Email) {
         this.Email = Email;
     }
+    public String Username() {
+        return Username;
+    }
+    public void Username(String Username) {
+        this.Username = Username;
+    }
+    public String Password() {
+        return Password;
+    }
+    public void Password(String Password) { this.Password = Password; }
+
 }

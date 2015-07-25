@@ -29,14 +29,23 @@ public class DAO {
     @Transactional //noch nicht getestet
     public StudentEntity findStudentByUserPass(String username, String password) {
         Session session = sessionFactory.getCurrentSession();
-        String hql = "FROM StudentEntity WHERE username = :username AND password = :password";
+        String hql = "FROM StudentEntity as S WHERE S.Username = :username AND S.Password = :password";
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("username", username);
         query.setParameter("password", password);
-        StudentEntity result = (StudentEntity) query.list().get(0);
-        return result;
-    }
 
+        List students = query.list();
+        return (students.isEmpty() ? null : (StudentEntity) students.get(0));
+    }
+    @Transactional
+    public StudentEntity findStudentById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM StudentEntity as S WHERE S.id = :id";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("id", id);
+        List students = query.list();
+        return (students.isEmpty() ? null : (StudentEntity) students.get(0));
+    }
     //---University DAO---
     @Transactional
     public List<UniversitaetEntity> findAllUniversities() {
