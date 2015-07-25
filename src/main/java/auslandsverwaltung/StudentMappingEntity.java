@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "student_has_studiengang", schema = "", catalog = "Auslandsverwaltung")
 public class StudentMappingEntity {
+    @Id
     private int Student;
     private int Studiengang;
 

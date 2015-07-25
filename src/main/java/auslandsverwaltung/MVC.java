@@ -14,7 +14,7 @@ import java.util.List;
 public class MVC {
 
     @Autowired private DAO dao;
-    @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"index"}, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         List<StudentEntity> studenten = dao.findAllStudents();
@@ -31,7 +31,7 @@ public class MVC {
         return "views/index";
     }
 
-    @RequestMapping(value = {"/studentenliste"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"studentenliste"}, method = RequestMethod.GET)
     public ModelAndView studentenListe() {
         ModelAndView model = new ModelAndView();
         List<StudentEntity> studenten = dao.findAllStudents();
@@ -42,7 +42,7 @@ public class MVC {
         return model;
     }
 
-    @RequestMapping(value = {"/chooseStudent"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"chooseStudent"}, method = RequestMethod.GET)
     public ModelAndView chooseStudent() {
         ModelAndView model = new ModelAndView();
         List<StudentEntity> studenten = dao.findAllStudents();
@@ -53,7 +53,7 @@ public class MVC {
         return model;
     }
 
-    @RequestMapping(value = {"/hochschulliste"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"hochschulliste"}, method = RequestMethod.GET)
     public ModelAndView hochschulliste() {
         ModelAndView model = new ModelAndView();
         List<UniversitaetEntity> universities = dao.findAllUniversities();
@@ -64,7 +64,7 @@ public class MVC {
         return model;
     }
 
-    @RequestMapping(value = {"/student"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"student"}, method = RequestMethod.GET)
     public ModelAndView student(@RequestParam("studentId") int studentId) {
         ModelAndView model = new ModelAndView();
         StudentEntity student = dao.findStudentById(studentId);
@@ -78,7 +78,7 @@ public class MVC {
     }
 
     //@Autowired private DAO dao;
-    @RequestMapping(value = {"/login_function"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"login_function"}, method = RequestMethod.POST)
     public ModelAndView login_function(@RequestParam("username") String username,@RequestParam("password") String password) {
 
         ModelAndView model = new ModelAndView();

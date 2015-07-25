@@ -3,7 +3,7 @@
 <jsp:include page='fragments/header.jsp'>
     <jsp:param name="pageName" value="Willkommen"/>
 </jsp:include>
-<%@ include file="loginbereich.jsp" %>
+<%@ include file="LoginBereich.jsp" %>
 <p>
     Herzlich Willkommen<br />
     bitte wählen Sie aus der Navigation eine Aktion
