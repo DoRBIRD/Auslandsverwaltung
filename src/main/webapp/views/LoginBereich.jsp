@@ -33,28 +33,28 @@
                 <label class="col-sm-2 control-label" for="signin-firstname">First name</label>
 
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" name="firstname" id="signin-firstname">
+                    <input class="form-control" type="text" name="firstname" id="signin-firstname" disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="signin-lastname">Last name</label>
 
                 <div class="col-sm-10">
-                    <input class="form-control" type="text" name="lastname" id="signin-lastname">
+                    <input class="form-control" type="text" name="lastname" id="signin-lastname" disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="signin-password">Password</label>
 
                 <div class="col-sm-10">
-                    <input class="form-control" type="password" name="password" id="signin-password">
+                    <input class="form-control" type="password" name="password" id="signin-password" disabled>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="signin-rpassword">Password Again</label>
 
                 <div class="col-sm-10">
-                    <input class="form-control" type="password" name="rPasswort" id="signin-rpassword">
+                    <input class="form-control" type="password" name="rPasswort" id="signin-rpassword" disabled>
                 </div>
             </div>
             <div class="form-group">
