@@ -3,7 +3,7 @@
 <jsp:include page='fragments/header.jsp'>
   <jsp:param name="pageName" value="Hochschulliste"/>
 </jsp:include>
-<form action="hochschule.jsp">
+<form action="hochschule">
   <select name="universities">
     <c:forEach var="u" items="${universities}">
       <option value="${u.id}">${u.id}- ${u.name} - ${u.standort}</option>

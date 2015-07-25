@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.management.Query;
+import java.util.LinkedList;
 import java.util.List;
 
 @Repository
@@ -49,8 +50,9 @@ public class DAO {
     public List<StudiengangEntity> findStudeiengangByStudentId(int studentId) {
         Session session = sessionFactory.getCurrentSession();
         List<StudentMappingEntity> studentMapping = findStudentMappingByStudentId(studentId);
-        List<StudiengangEntity> studiengaenge = null;
-        for(StudentMappingEntity sm:studentMapping)studiengaenge.add(findStudeiengangById(sm.getStudiengang()));
+        List<StudiengangEntity> studiengaenge = new LinkedList<StudiengangEntity>();
+        for(StudentMappingEntity sm : studentMapping)
+            studiengaenge.add(findStudeiengangById(sm.getStudiengang()));
         return studiengaenge;
     }
 
@@ -82,7 +84,7 @@ public class DAO {
     @Transactional
     public List<StudentMappingEntity> findStudentMappingByStudentId(int studentId) {
         Session session = sessionFactory.getCurrentSession();
-        String hql = "from StudentMappingEntity AS SM WHERE SM.student = :studentId";
+        String hql = "from StudentMappingEntity AS SM WHERE SM.Student = :studentId";
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("studentId",studentId);
         List studentMapping = query.list();
@@ -98,6 +100,14 @@ public class DAO {
         query.setParameter("studiengangId",studiengangId);
         List studiengaenge = query.list();
         return (studiengaenge.isEmpty() ? null : (StudiengangEntity) studiengaenge.get(0));
+    }
+    @Transactional
+    public List<StudiengangEntity> findStudeiengangByUniId(int uniId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from StudiengangEntity AS SG WHERE SG.universitaet_id = :uniId";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("uniId",uniId);
+        return query.list();
     }
 
 

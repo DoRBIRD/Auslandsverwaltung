@@ -9,11 +9,11 @@
 <jsp:include page='fragments/header.jsp'>
   <jsp:param name="pageName" value="Hochschule"/>
 </jsp:include>
-<table>
-  <tr>
-    <td>
-      "from hochschulliste where id = <%= request.getParameter("universities")%>"
-    </td>
-  </tr>
-</table>
+
+  ${university.id} - ${university.name} - ${university.standort} <br>
+  Bietet folgende Studiengänge: <br>
+  <c:forEach var="sg" items="${studiengangListe}">
+    ${sg.id}- ${sg.fakultaet} - ${sg.bezeichnung}
+  </c:forEach>
+
 <jsp:include page="fragments/footer.jsp" />

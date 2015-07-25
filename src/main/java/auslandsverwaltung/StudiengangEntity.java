@@ -11,7 +11,7 @@ public class StudiengangEntity {
     private int id;
     private String Bezeichnung;
     private Integer Fakultaet;
-    private int univeritaetId;
+    private int universitaet_id;
 
     @Id
     @GeneratedValue
@@ -39,11 +39,11 @@ public class StudiengangEntity {
         Fakultaet = fakultaet;
     }
 
-    public int getUniveritaetId() {
-        return univeritaetId;
+    public int getUniversitaet_id() {
+        return universitaet_id;
     }
 
-    public void setUniveritaetId(int univeritaetId) {
-        this.univeritaetId = univeritaetId;
+    public void setUniversitaet_id(int universitaet_id) {
+        this.universitaet_id = universitaet_id;
     }
 }

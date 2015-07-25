@@ -54,7 +54,7 @@ public class MVC {
     }
 
     @RequestMapping(value = {"hochschulliste"}, method = RequestMethod.GET)
-    public ModelAndView hochschulliste() {
+    public ModelAndView hochschuleliste() {
         ModelAndView model = new ModelAndView();
         List<UniversitaetEntity> universities = dao.findAllUniversities();
         model.addObject("universities", universities);
@@ -64,15 +64,26 @@ public class MVC {
         return model;
     }
 
+    @RequestMapping(value = {"hochschule"}, method = RequestMethod.GET)
+    public ModelAndView hochschule(@RequestParam(value = "universities", required = false, defaultValue = "-1") int universities) {
+        ModelAndView model = new ModelAndView();
+        UniversitaetEntity university = dao.findUniversityById(universities);
+        model.addObject("university", university);
+
+        List<StudiengangEntity> studiengangListe = dao.findStudeiengangByUniId(universities);
+        model.addObject("studiengangListe",studiengangListe);
+        model.setViewName("views/hochschule");
+        model.addObject(DAO.class);
+        return model;
+    }
+
     @RequestMapping(value = {"student"}, method = RequestMethod.GET)
-    public ModelAndView student(@RequestParam("studentId") int studentId) {
+    public ModelAndView student(@RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
         StudentEntity student = dao.findStudentById(studentId);
         model.addObject("student",student);
         List<StudiengangEntity> sg = dao.findStudeiengangByStudentId(studentId);
         model.addObject("studiengaenge",sg);
-        UniversitaetEntity uni = dao.findUniversityById(sg.get(0).getUniveritaetId());
-        model.addObject("uni",uni);
         model.setViewName("views/student");
         return model;
     }

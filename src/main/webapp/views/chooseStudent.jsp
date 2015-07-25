@@ -17,7 +17,7 @@
 <div id="contentbereich">
 
   <form action="student">>
-    <select name="student">
+    <select name="studentId">
       <c:forEach var="s" items="${studenten}">
         <option value="${s.id}">${s.id}- ${s.vorname} - ${s.nachname}></option>
       </c:forEach>
@@ -27,7 +27,7 @@
     <input type="submit" value="Sign in">
   </form>
 </div>
-<div id="menubreich"><%@ include file="menu.jsp" %></div>
+
 <div id="headerbereich"><h1 id="menu">Auslandsverwaltung - <%=pageName%></h1></div>
 <div id="footerbereich"></div>
 </body>
