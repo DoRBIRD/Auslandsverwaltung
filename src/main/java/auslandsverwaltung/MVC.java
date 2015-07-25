@@ -14,7 +14,7 @@ import java.util.List;
 public class MVC {
 
     @Autowired private DAO dao;
-    @RequestMapping(value = {"/index", "/index.jsp"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/index"}, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
         List<StudentEntity> studenten = dao.findAllStudents();
@@ -28,7 +28,7 @@ public class MVC {
     @RequestMapping("/")
     public String visitHome() {
         // mappt "/" auf home
-        return "views/home";
+        return "views/index";
     }
 
     @RequestMapping(value = {"/studentenliste"}, method = RequestMethod.GET)
@@ -53,7 +53,7 @@ public class MVC {
         return model;
     }
 
-    @RequestMapping(value = {"/hochschulliste", "hochschulliste", "hochschulliste.jsp"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/hochschulliste"}, method = RequestMethod.GET)
     public ModelAndView hochschulliste() {
         ModelAndView model = new ModelAndView();
         List<UniversitaetEntity> universities = dao.findAllUniversities();

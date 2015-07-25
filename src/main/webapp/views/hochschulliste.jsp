@@ -7,14 +7,10 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-<head>
-  <title>hoschschulliste</title>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
-</head>
-
-<body>
-<form action="hochschule.jsp">>
+<jsp:include page='fragments/header.jsp'>
+  <jsp:param name="pageName" value="Hochschulliste"/>
+</jsp:include>
+<form action="hochschule.jsp">
   <select name="universities">
     <c:forEach var="u" items="${universities}">
       <option value="${u.id}">${u.id}- ${u.name} - ${u.standort}</option>
@@ -22,5 +18,4 @@
     <input type="submit" value="Choose">
   </select>
 </form>
-</body>
-</html>
+<jsp:include page="fragments/footer.jsp" />
