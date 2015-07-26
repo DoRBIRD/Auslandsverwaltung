@@ -53,7 +53,7 @@ public class ErrorController {
 
         ModelAndView model = new ModelAndView(TILE_ERROR);
         model.addObject("errorCode", 405);
-        model.addObject("message", String.format("The page does not accept the actual request method (%s)", request.getMethod() ));
+        model.addObject("message", String.format("The page does not accept the actual request method (%s)", request.getMethod()));
 
         return model;
     }
@@ -65,6 +65,7 @@ public class ErrorController {
      */
     @RequestMapping(value = "/500", produces = MediaType.APPLICATION_XHTML_XML_VALUE)
     public ModelAndView errorPage() {
+
         ModelAndView model = new ModelAndView(TILE_ERROR);
         model.addObject("errorCode", 500);
         model.addObject("message", "The page you requested could not be found. This location may not be current, due to the recent site redesign.");
