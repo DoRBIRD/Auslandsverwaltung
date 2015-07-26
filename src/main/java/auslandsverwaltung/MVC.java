@@ -10,13 +10,16 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class MVC {
 
-    @Autowired private DAO dao;
+    @Autowired
+    private DAO dao;
+
     @RequestMapping(value = {"index"}, method = RequestMethod.GET)
     public ModelAndView index() {
         ModelAndView model = new ModelAndView();
@@ -39,7 +42,7 @@ public class MVC {
         ModelAndView model = new ModelAndView();
         List<StudentEntity> studenten = dao.findAllStudents();
         model.addObject("studenten", studenten);
-        model.addObject("test","test");
+        model.addObject("test", "test");
         model.setViewName("views/studentenliste");
         model.addObject(DAO.class);
         return model;
@@ -50,7 +53,7 @@ public class MVC {
         ModelAndView model = new ModelAndView();
         List<StudentEntity> studenten = dao.findAllStudents();
         model.addObject("studenten", studenten);
-        model.addObject("test","test");
+        model.addObject("test", "test");
         model.setViewName("views/studentenliste");
         model.addObject(DAO.class);
         return model;
@@ -61,7 +64,7 @@ public class MVC {
         ModelAndView model = new ModelAndView();
         List<UniversitaetEntity> universities = dao.findAllUniversities();
         model.addObject("universities", universities);
-        model.addObject("test","test");
+        model.addObject("test", "test");
         model.setViewName("views/hochschulliste");
         model.addObject(DAO.class);
         return model;
@@ -75,17 +78,17 @@ public class MVC {
         model.addObject("university", university);
 
         List<StudiengangEntity> studiengangListe = dao.findStudeiengangByUniId(universities);
-        model.addObject("studiengangListe",studiengangListe);
+        model.addObject("studiengangListe", studiengangListe);
 
         List<StudienplatzEntity> studienplatzListe = dao.findStudeienplatzByUniId(universities);
-        model.addObject("studienplatzListe",studienplatzListe);
+        model.addObject("studienplatzListe", studienplatzListe);
 
         List<StudentEntity> studentenListe = dao.findStudentByUniversityId2(universities);
-        model.addObject("studentenListe",studentenListe);
+        model.addObject("studentenListe", studentenListe);
 
         model.setViewName("views/hochschule");
         model.addObject(DAO.class);
-        model.addObject("dao",dao);
+        model.addObject("dao", dao);
         return model;
     }
 
@@ -93,9 +96,9 @@ public class MVC {
     public ModelAndView student(@RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
         StudentEntity student = dao.findStudentById(studentId);
-        model.addObject("student",student);
+        model.addObject("student", student);
         List<StudiengangEntity> sg = dao.findStudeiengangByStudentId(studentId);
-        model.addObject("studiengaenge",sg);
+        model.addObject("studiengaenge", sg);
         model.setViewName("views/student");
         return model;
     }
@@ -104,63 +107,46 @@ public class MVC {
     public ModelAndView laenderlist() {
         ModelAndView model = new ModelAndView();
         List<LandEntity> laenderListe = dao.findAllLands();
-        model.addObject("laenderListe",laenderListe);
+        model.addObject("laenderListe", laenderListe);
         model.setViewName("views/laenderliste");
         return model;
     }
 
 
     @RequestMapping(value = {"land"}, method = RequestMethod.GET)
-    public ModelAndView land(@RequestParam(value = "landId", required = false, defaultValue = "-1") String landId){
+    public ModelAndView land(@RequestParam(value = "landId", required = false, defaultValue = "-1") String landId) {
         ModelAndView model = new ModelAndView();
         LandEntity land = dao.findLandById(landId);
-        model.addObject("land",land);
+        model.addObject("land", land);
         List<UniversitaetEntity> hochschulListe = dao.findUniversityByStandort(landId);
-        model.addObject("hochschulListe",hochschulListe);
+        model.addObject("hochschulListe", hochschulListe);
         model.setViewName("views/land");
         return model;
     }
 
     @RequestMapping(value = {"allData"}, method = RequestMethod.GET)
-    public ModelAndView allData(){
+    public ModelAndView allData() {
         ModelAndView model = new ModelAndView();
 
         List<LandEntity> laenderListe = dao.findAllLands();
-        model.addObject("laenderListe",laenderListe);
+        model.addObject("laenderListe", laenderListe);
 
         List<UniversitaetEntity> universities = dao.findAllUniversities();
-        model.addObject("universities",universities);
+        model.addObject("universities", universities);
 
         List<StudentEntity> studentenliste = dao.findAllStudents();
-        model.addObject("studentenliste",studentenliste);
+        model.addObject("studentenliste", studentenliste);
 
         List<StudiengangEntity> studiengangliste = dao.findAllStudiengaenge();
-        model.addObject("studiengangliste",studiengangliste);
+        model.addObject("studiengangliste", studiengangliste);
 
         List<StudienplatzEntity> studienplatzliste = dao.findAllStudienplaetze();
-        model.addObject("studienplatzliste",studienplatzliste);
+        model.addObject("studienplatzliste", studienplatzliste);
 
         model.setViewName("views/allData");
         return model;
     }
 
-
-
-    //@Autowired private DAO dao;
-    @RequestMapping(value = {"login_function"}, method = RequestMethod.POST)
-    public ModelAndView login_function(@RequestParam("username") String username,@RequestParam("password") String password, HttpServletResponse response, HttpServletRequest request) {
-
-        ModelAndView model = new ModelAndView();
-        StudentEntity student = dao.findStudentByUserPass(username, password);
-        if(student!=null) {
-            model.addObject("student", student);
-            model.setViewName("views/login_function");
-
-            HttpSession session = request.getSession();
-            session.setAttribute("UserName", student.Username());
-        }
-        return model;
-    }
 /*
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {

@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <h2>Login</h2>
 
-        <form action="login_function" method="post" class="form-horizontal">
+        <form action="/user/login" method="post" class="form-horizontal">
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="login-username">Username</label>
 
@@ -28,7 +28,7 @@
     <div class="col-md-6">
         <h2>Register</h2>
 
-        <form action="signin_function" method="post" class="form-horizontal">
+        <form action="#" method="post" class="form-horizontal">
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="signin-firstname">First name</label>
 
