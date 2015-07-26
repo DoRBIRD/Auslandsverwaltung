@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Error Controller. handles the calls for 404, 500 and 401 HTTP Status codes.
  */
@@ -36,6 +38,22 @@ public class ErrorController {
         ModelAndView model = new ModelAndView(TILE_ERROR);
         model.addObject("errorCode", 404);
         model.addObject("message", "The page you requested could not be found. This location may not be current.");
+
+        return model;
+    }
+
+
+    /**
+     * Method not supported.
+     *
+     * @return Home Page
+     */
+    @RequestMapping(value = "/405", produces = MediaType.APPLICATION_XHTML_XML_VALUE)
+    public ModelAndView methodNotSupported(HttpServletRequest request) {
+
+        ModelAndView model = new ModelAndView(TILE_ERROR);
+        model.addObject("errorCode", 405);
+        model.addObject("message", String.format("The page does not accept the actual request method (%s)", request.getMethod() ));
 
         return model;
     }
