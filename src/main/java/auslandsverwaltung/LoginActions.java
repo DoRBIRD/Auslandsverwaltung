@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,24 +22,32 @@ public class LoginActions {
 
     //@Autowired private DAO dao;
     @RequestMapping(value = {"login"}, method = RequestMethod.POST)
-    public ModelAndView login_function(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response, HttpServletRequest request) {
-
-        ModelAndView model = new ModelAndView();
+    public String login_function(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse response, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         StudentEntity student = dao.findStudentByUserPass(username, password);
         if (student != null) {
-            model.addObject("student", student);
-            model.setViewName("views/login");
-
             HttpSession session = request.getSession();
             session.setAttribute("UserName", student.Username());
+            redirectAttributes.addFlashAttribute("type", "success");
+            redirectAttributes.addFlashAttribute("message", "Login erfolgreich");
+
+            return "redirect:/index";
+        } else {
+            redirectAttributes.addFlashAttribute("type", "danger");
+            redirectAttributes.addFlashAttribute("message", "Login fehlgeschlagen");
         }
-        return model;
+
+        return "redirect:/index";
     }
 
     @RequestMapping(value = {"logout"}, method = RequestMethod.GET)
-    public void logout(HttpServletResponse response, HttpServletRequest request) throws IOException {
+    public String logout(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+
         request.getSession().invalidate();
-        response.sendRedirect("/index");
+
+        redirectAttributes.addFlashAttribute("type", "success");
+        redirectAttributes.addFlashAttribute("message", "Logout erfolgreich");
+
+        return "redirect:/index";
     }
 
 }

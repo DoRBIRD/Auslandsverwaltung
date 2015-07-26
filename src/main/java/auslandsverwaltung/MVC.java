@@ -1,17 +1,23 @@
 package auslandsverwaltung;
 
+import com.sun.tracing.dtrace.Attributes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.support.SessionFlashMapManager;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -21,13 +27,22 @@ public class MVC {
     private DAO dao;
 
     @RequestMapping(value = {"index"}, method = RequestMethod.GET)
-    public ModelAndView index() {
-        ModelAndView model = new ModelAndView();
+    public ModelAndView index(HttpServletRequest request) {
+        ModelAndView model = new ModelAndView("views/index");
         List<StudentEntity> studenten = dao.findAllStudents();
         model.addObject("studenten", studenten);
         model.addObject("test", "test");
-        model.setViewName("views/index");
         model.addObject(DAO.class);
+
+        Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
+        System.out.println("Receive flash map with {} elements=" + (flashMap != null ? flashMap.size() : 0));
+        if (flashMap != null) {
+            Object statusMessage = flashMap.get("message");
+            model.addObject("flashMessage", flashMap.get("message"));
+            model.addObject("flashMessageType", flashMap.get("type"));
+            System.out.println("Received statusMessage attribute {} "+statusMessage);
+        }
+
         return model;
     }
 

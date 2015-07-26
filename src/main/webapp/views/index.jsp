@@ -4,21 +4,20 @@
     <jsp:param name="pageName" value="Willkommen"/>
 </jsp:include>
 
+<c:if test="${flashMessage != null}">
+    <div class="alert alert-${flashMessageType}" role="alert">
+            ${flashMessage}
+    </div>
+</c:if>
 
 <c:if test="${sessionScope.UserName == null}">
     <%@ include file="LoginBereich.jsp"%>
-    <p>
-        <br>Herzlich Willkommen<br />
-        bitte wählen Sie aus der Navigation eine Aktion
-
-    </p>
 </c:if>
 
 <c:if test="${sessionScope.UserName != null}">
     <p>
         <br>Hallo, ${sessionScope.UserName}<br />
         bitte wählen Sie aus der Navigation eine Aktion
-
     </p>
 </c:if>
 
