@@ -11,4 +11,6 @@
         <c:if test="${student != null}">
         <p>erfolg<p>
         </c:if>
+
+<c:redirect url="/index"/>
 <jsp:include page="fragments/footer.jsp" />
