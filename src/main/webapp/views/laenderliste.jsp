@@ -4,9 +4,8 @@
   <jsp:param name="pageName" value="Laenderliste"/>
 </jsp:include>
 
-
 <table class="table">
-  <caption>Lsite aller Länder:</caption>
+  <caption>Liste aller Länder:</caption>
   <thead>
   <tr>
     <th>name</th>

@@ -1,6 +1,8 @@
+<%@ page import="org.springframework.web.servlet.support.SessionFlashMapManager" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%String pageName = request.getParameter("pageName");%>
+<!DOCTYPE html>
 <html>
 <head>
   <title><%=pageName%></title>
