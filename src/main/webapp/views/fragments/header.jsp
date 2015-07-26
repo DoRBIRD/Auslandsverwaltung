@@ -22,6 +22,12 @@
     </div>
     <div class="row">
         <div class="col-md-3">
+            <c:if test="${sessionScope.user != null}">
+                <small>
+                        ${sessionScope.user.getVorname()} ${sessionScope.user.getNachname()}
+                    ( ${sessionScope.user.getUsername()} )
+                </small>
+            </c:if>
             <%@ include file="menu.jsp" %>
         </div>
         <div class="col-md-9">
