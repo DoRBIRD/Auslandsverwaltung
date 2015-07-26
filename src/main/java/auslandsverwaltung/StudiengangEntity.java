@@ -10,7 +10,7 @@ import javax.persistence.*;
 public class StudiengangEntity {
     private int id;
     private String Bezeichnung;
-    private Integer Fakultaet;
+    private int Fakultaet;
     private int universitaet_id;
 
     @Id
@@ -31,11 +31,11 @@ public class StudiengangEntity {
         Bezeichnung = bezeichnung;
     }
 
-    public Integer getFakultaet() {
+    public int getFakultaet() {
         return Fakultaet;
     }
 
-    public void setFakultaet(Integer fakultaet) {
+    public void setFakultaet(int fakultaet) {
         Fakultaet = fakultaet;
     }
 
