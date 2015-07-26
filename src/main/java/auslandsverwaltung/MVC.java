@@ -5,8 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -83,21 +87,27 @@ public class MVC {
         StudentEntity student = dao.findStudentById(studentId);
         model.addObject("student",student);
         List<StudiengangEntity> sg = dao.findStudeiengangByStudentId(studentId);
-        model.addObject("studiengaenge",sg);
+        model.addObject("studiengaenge", sg);
         model.setViewName("views/student");
         return model;
     }
 
     //@Autowired private DAO dao;
     @RequestMapping(value = {"login_function"}, method = RequestMethod.POST)
-    public ModelAndView login_function(@RequestParam("username") String username,@RequestParam("password") String password) {
-
+    public ModelAndView login_function(@RequestParam("username") String username,@RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) {
         ModelAndView model = new ModelAndView();
         StudentEntity student = dao.findStudentByUserPass(username, password);
-        model.addObject("student",student);
-        model.setViewName("views/login_function");
+        if(student!=null) {
+            model.addObject("student", student);
+            model.setViewName("views/login_function");
+
+            HttpSession session = request.getSession();
+            session.setAttribute("UserName", student.Username());
+        }
         return model;
     }
+
+
 /*
     @RequestMapping(method = RequestMethod.GET)
     public String list(Model model) {
