@@ -1,4 +1,4 @@
-<ul id="navi">
+<ul id="navi" class="nav nav-stacked">
     <li><a href="/">Home</a></li>
 
     <c:if test="${sessionScope.UserName != null}">

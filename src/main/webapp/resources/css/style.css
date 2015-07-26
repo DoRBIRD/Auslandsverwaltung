@@ -13,3 +13,7 @@ ul#navi {
     margin: 0;
     padding: 0;
 }
+
+ul#navi hr {
+    margin: 5px;
+}

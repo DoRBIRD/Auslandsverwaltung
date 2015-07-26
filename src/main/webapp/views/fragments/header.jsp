@@ -5,17 +5,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%=pageName%></title>
-  <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
-  <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+    <title><%=pageName%>
+    </title>
+    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
 </head>
 <body>
 <div class="container">
-  <div class="row headerElement">
-    <h1 class="headerTitle">Auslandsverwaltung ~ <%=pageName%></h1>
-  </div>
-  <div class="row">
-    <div class="col-md-3">
-      <%@ include file="menu.jsp" %>
+    <div class="row page-header">
+        <h1 class="headerTitle">
+            Auslandsverwaltung
+            <small>
+                <%=pageName%>
+            </small>
+        </h1>
     </div>
-    <div class="col-md-9">
+    <div class="row">
+        <div class="col-md-3">
+            <%@ include file="menu.jsp" %>
+        </div>
+        <div class="col-md-9">

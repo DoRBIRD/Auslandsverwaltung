@@ -4,8 +4,7 @@
   <jsp:param name="pageName" value="Land"/>
 </jsp:include>
 
-
-${land.name}
+<h2>${land.name}</h2>
 
 <table class="table">
   <caption>Liste aller Hochschulen in ${land.name}:</caption>
@@ -18,9 +17,9 @@ ${land.name}
   </thead>
   <c:forEach var="u" items="${hochschulListe}">
     <tr>
-      <td><a class="btn btn-default" href="/hochschule?hochschulId=${u.id}" role="button">${u.id}</a> </td>
+      <td><a class="btn btn-default btn-sm" href="/hochschule?hochschulId=${u.id}" role="button">${u.id}</a> </td>
       <td>${u.name}</td>
-      <td><a class="btn btn-default" href="/land?landId=${u.standort}" role="button">${u.standort}</a></td>
+      <td><a class="btn btn-default btn-sm" href="/land?landId=${u.standort}" role="button">${u.standort}</a></td>
     </tr>
   </c:forEach>
 </table>

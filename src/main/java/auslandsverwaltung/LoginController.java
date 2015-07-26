@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping("/user/")
-public class LoginActions {
+public class LoginController {
 
     @Autowired
     private DAO dao;
