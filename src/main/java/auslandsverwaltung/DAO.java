@@ -176,9 +176,32 @@ public class DAO {
         return query.list();
     }
     @Transactional
+    public StudienplatzEntity findStudeienplatzById(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from StudienplatzEntity AS SP WHERE SP.id = :id";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("id",id);
+        List<StudienplatzEntity> studienplatzliste = query.list();
+        return (studienplatzliste.isEmpty() ? null : (StudienplatzEntity) studienplatzliste.get(0));
+    }
+    @Transactional
     public List<StudienplatzEntity> findAllStudienplaetze() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM StudienplatzEntity").list();
     }
-
+    //---Erfahrungsbericht DAO---
+    @Transactional
+    public ErfahrungsberichtEntity findEhrfahrungsberichtById(int erfahrungsberichtId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from ErfahrungsberichtEntity AS EB WHERE EB.id = :erfahrungsberichtId";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("erfahrungsberichtId",erfahrungsberichtId);
+        List<ErfahrungsberichtEntity> erfahrungsberichtliste = query.list();
+        return (erfahrungsberichtliste.isEmpty() ? null : (ErfahrungsberichtEntity) erfahrungsberichtliste.get(0));
+    }
+    @Transactional
+    public List<ErfahrungsberichtEntity> findAllEhrfahrungsbericht() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("FROM ErfahrungsberichtEntity").list();
+    }
 }

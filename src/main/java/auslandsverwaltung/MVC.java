@@ -139,6 +139,44 @@ public class MVC {
         return model;
     }
 
+    @RequestMapping(value = {"studienplatzliste"}, method = RequestMethod.GET)
+    public ModelAndView studienplatzliste() {
+        ModelAndView model = new ModelAndView();
+        List<StudienplatzEntity> studienplatzliste = dao.findAllStudienplaetze();
+        model.addObject("studienplatzliste", studienplatzliste);
+        model.setViewName("views/studienplatzliste");
+        return model;
+    }
+
+
+    @RequestMapping(value = {"studienplatz"}, method = RequestMethod.GET)
+    public ModelAndView studienplatz(@RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId) {
+        ModelAndView model = new ModelAndView();
+        StudienplatzEntity studienplatz = dao.findStudeienplatzById(studienplatzId);
+        model.addObject("studienplatz", studienplatz);
+        model.setViewName("views/studienplatz");
+        return model;
+    }
+
+    @RequestMapping(value = {"erfahrungsberichtliste"}, method = RequestMethod.GET)
+    public ModelAndView erfahrungsberichtliste() {
+        ModelAndView model = new ModelAndView();
+        List<ErfahrungsberichtEntity> erfahrungsberichtliste = dao.findAllEhrfahrungsbericht();
+        model.addObject("erfahrungsberichtliste", erfahrungsberichtliste);
+        model.setViewName("views/erfahrungsberichtliste");
+        return model;
+    }
+
+
+    @RequestMapping(value = {"erfahrungsbericht"}, method = RequestMethod.GET)
+    public ModelAndView erfahrungsbericht(@RequestParam(value = "erfahrungsberichtId", required = false, defaultValue = "-1") int erfahrungsberichtId) {
+        ModelAndView model = new ModelAndView();
+        ErfahrungsberichtEntity erfahrungsbericht = dao.findEhrfahrungsberichtById(erfahrungsberichtId);
+        model.addObject("erfahrungsbericht", erfahrungsbericht);
+        model.setViewName("views/erfahrungsbericht");
+        return model;
+    }
+
     @RequestMapping(value = {"allData"}, method = RequestMethod.GET)
     public ModelAndView allData() {
         ModelAndView model = new ModelAndView();
