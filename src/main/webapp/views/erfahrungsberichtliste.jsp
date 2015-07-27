@@ -20,7 +20,7 @@
             <td>${eb.betreff}</td>
             <td>${eb.inhalt}</td>
             <td>${eb.link}</td>
-            <td><a class="btn btn-default" href="/student?studentenId=${eb.student_id}" role="button">${eb.student_id}</td>
+            <td><a class="btn btn-default" href="/student?studentId=${eb.student_id}" role="button">${eb.student_id}</td>
         </tr>
     </c:forEach>
 </table>
