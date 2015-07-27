@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping("/user/")
-public class LoginActions {
+public class LoginController {
 
     @Autowired
     private DAO dao;
@@ -26,7 +26,7 @@ public class LoginActions {
         StudentEntity student = dao.findStudentByUserPass(username, password);
         if (student != null) {
             HttpSession session = request.getSession();
-            session.setAttribute("UserName", student.Username());
+            session.setAttribute("user", student);
             redirectAttributes.addFlashAttribute("type", "success");
             redirectAttributes.addFlashAttribute("message", "Login erfolgreich");
 

@@ -10,15 +10,15 @@
     </div>
 </c:if>
 
-<c:if test="${sessionScope.UserName == null}">
-    <%@ include file="LoginBereich.jsp"%>
+<c:if test="${sessionScope.user == null}">
+    <%@ include file="login.jsp" %>
 </c:if>
 
-<c:if test="${sessionScope.UserName != null}">
+<c:if test="${sessionScope.user != null}">
     <p>
-        <br>Hallo, ${sessionScope.UserName}<br />
-        bitte wählen Sie aus der Navigation eine Aktion
+        <br>Hallo, ${sessionScope.user.getVorname()} ${sessionScope.user.getNachname()}<br/>
+        bitte wähle aus der Navigation eine Aktion aus.
     </p>
 </c:if>
 
-<jsp:include page="fragments/footer.jsp" />
+<jsp:include page="fragments/footer.jsp"/>

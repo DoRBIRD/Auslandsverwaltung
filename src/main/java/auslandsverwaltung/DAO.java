@@ -55,7 +55,7 @@ public class DAO {
             studiengaenge.add(findStudeiengangById(sm.getStudiengang()));
         return studiengaenge;
     }
-    @Transactional //version die gehen würde mit beziehungen in den hybernate entitys
+    @Transactional //version die gehen wï¿½rde mit beziehungen in den hybernate entitys
     public List<StudentEntity> findStudentByUniversityId(int uniId) {
         Session session = sessionFactory.getCurrentSession();
         String hql = "SELECT s.id, s.Vorname, s.Username, s.Password, s.MatrikelNummer, s.Email " +

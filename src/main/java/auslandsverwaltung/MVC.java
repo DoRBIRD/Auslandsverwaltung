@@ -35,12 +35,9 @@ public class MVC {
         model.addObject(DAO.class);
 
         Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
-        System.out.println("Receive flash map with {} elements=" + (flashMap != null ? flashMap.size() : 0));
         if (flashMap != null) {
-            Object statusMessage = flashMap.get("message");
             model.addObject("flashMessage", flashMap.get("message"));
             model.addObject("flashMessageType", flashMap.get("type"));
-            System.out.println("Received statusMessage attribute {} "+statusMessage);
         }
 
         return model;

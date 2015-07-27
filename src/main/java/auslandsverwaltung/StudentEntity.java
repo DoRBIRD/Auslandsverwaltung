@@ -51,15 +51,15 @@ public class StudentEntity {
     public void setEmail(String Email) {
         this.Email = Email;
     }
-    public String Username() {
+    public String getUsername() {
         return Username;
     }
-    public void Username(String Username) {
+    public void getUsername(String Username) {
         this.Username = Username;
     }
-    public String Password() {
+    public String getPassword() {
         return Password;
     }
-    public void Password(String Password) { this.Password = Password; }
+    public void getPassword(String Password) { this.Password = Password; }
 
 }
