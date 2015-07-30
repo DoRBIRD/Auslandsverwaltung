@@ -4,7 +4,7 @@
     <jsp:param name="pageName" value="Mein Profil"/>
 </jsp:include>
 
-<c:if test="${student.id == sessionScope.user.id}">
+
     <c:if test="${student != null}">
         ${student.id} - ${student.vorname} - ${student.nachname} - ${student.username} - ${student.email} - ${student.matrikelNummer}
     </c:if>
@@ -14,6 +14,6 @@
     </c:forEach>
     <br>
     ${uni.name} - ${uni.standort}
-    </c:if>
+
 <jsp:include page="fragments/footer.jsp"/>
 

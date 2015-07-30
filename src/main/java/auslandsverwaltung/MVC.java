@@ -104,7 +104,7 @@ public class MVC {
     }
 
 
-    /*
+
     @RequestMapping(value = {"student"}, method = RequestMethod.GET)
     public ModelAndView student(@RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
@@ -115,22 +115,18 @@ public class MVC {
         model.setViewName("views/student");
         return model;
     }
-*/
+
 //EXPERIMENTAL
-    @RequestMapping(value = "student/studId={studentId}", method = RequestMethod.GET)
-    public @ResponseBody ModelAndView student(@PathVariable(value="studentId") int id) {
+    @RequestMapping(value = "Profil/studId={studentId}", method = RequestMethod.GET)
+    public @ResponseBody ModelAndView Profil(@PathVariable(value="studentId") int id) {
         ModelAndView model = new ModelAndView();
         StudentEntity student = dao.findStudentById(id);
         model.addObject("student", student);
         List<StudiengangEntity> sg = dao.findStudeiengangByStudentId(id);
         model.addObject("studiengaenge", sg);
-        model.setViewName("views/student");
+        model.setViewName("views/Profil");
         return model;
     }
-
-
-
-
 
     @RequestMapping(value = {"laenderliste"}, method = RequestMethod.GET)
     public ModelAndView laenderlist() {
@@ -186,13 +182,21 @@ public class MVC {
     }
 */
     @RequestMapping(value = "studienplatz/studId={studentId}", method = RequestMethod.GET)
-    public @ResponseBody ModelAndView studienplatz(@PathVariable(value="studentId") int id) {
+    public @ResponseBody ModelAndView studienplatzByStudent(@PathVariable(value="studentId") int id) {
         ModelAndView model = new ModelAndView();
         StudienplatzEntity studienplatz = dao.findStudeienplatzByStudentId(id);
         model.addObject("studienplatz", studienplatz);
         model.setViewName("views/studienplatz");
         return model;
+    }
 
+    @RequestMapping(value = {"studienplatz", "studienplatz/studienplatz"}, method = RequestMethod.GET)
+    public ModelAndView studienplatz(@RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId) {
+        ModelAndView model = new ModelAndView();
+        StudienplatzEntity studienplatz = dao.findStudeienplatzById(studienplatzId);
+        model.addObject("studienplatz", studienplatz);
+        model.setViewName("views/studienplatz");
+        return model;
     }
 
 
