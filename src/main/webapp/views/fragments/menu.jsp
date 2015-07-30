@@ -1,7 +1,7 @@
 <ul id="navi" class="nav nav-stacked">
     <li><a href="/">Home</a></li>
 
-    <c:if test="${sessionScope.user != null}">
+
         <li>
             <hr/>
         </li>
@@ -14,13 +14,17 @@
 
         <li>
             <hr/>
-        </li>
 
-        <li><a href="/student">Student</a></li>
-        <li><a href="/hochschule">Hochschule</a></li>
-        <li><a href="/land">Land</a></li>
-        <li><a href="/studienplatz">Studienplatz</a></li>
-        <li><a href="/erfahrungsbericht">Erfahrungsbericht</a></li>
+    <c:if test="${sessionScope.user != null}">
+        </li>
+        <li>Mein Schreibtisch</li>
+        <li><a href="/student">Mein Profil</a></li>
+        <li><a href="/hochschule">Meine Hochschule</a></li>
+        <!--<li><a href="/land">Land</a></li>-->
+        <li><a href="/studienplatz/studId=${sessionScope.user.id}">Mein Studienplatz</a></li>
+        <li><a href="/erfahrungsbericht">Mein Erfahrungsbericht</a></li>
+
+        <li>debug</li>
         <li><a href="/allData">allData</a></li>
 
         <li>

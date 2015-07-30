@@ -96,6 +96,7 @@ public class DAO {
         List universitys = query.list();
         return (universitys.isEmpty() ? null : (UniversitaetEntity) universitys.get(0));
     }
+
     @Transactional
     public  List<UniversitaetEntity> findUniversityByStandort(String standort) {
         Session session = sessionFactory.getCurrentSession();
@@ -175,6 +176,7 @@ public class DAO {
         query.setParameter("uniId",uniId);
         return query.list();
     }
+
     @Transactional
     public StudienplatzEntity findStudeienplatzById(int id) {
         Session session = sessionFactory.getCurrentSession();
@@ -184,6 +186,18 @@ public class DAO {
         List<StudienplatzEntity> studienplatzliste = query.list();
         return (studienplatzliste.isEmpty() ? null : (StudienplatzEntity) studienplatzliste.get(0));
     }
+
+
+    @Transactional
+    public StudienplatzEntity findStudeienplatzByStudentId(int student_id) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from StudienplatzEntity AS SP WHERE SP.student_id = :student_id";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("student_id",student_id);
+        List<StudienplatzEntity> studienplatzliste = query.list();
+        return (studienplatzliste.isEmpty() ? null : (StudienplatzEntity) studienplatzliste.get(0));
+    }
+
     @Transactional
     public List<StudienplatzEntity> findAllStudienplaetze() {
         Session session = sessionFactory.getCurrentSession();
@@ -204,4 +218,6 @@ public class DAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM ErfahrungsberichtEntity").list();
     }
+
+
 }

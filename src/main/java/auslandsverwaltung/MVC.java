@@ -1,11 +1,10 @@
 package auslandsverwaltung;
 
 import com.sun.tracing.dtrace.Attributes;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -104,6 +103,8 @@ public class MVC {
         return model;
     }
 
+
+    /*
     @RequestMapping(value = {"student"}, method = RequestMethod.GET)
     public ModelAndView student(@RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
@@ -114,6 +115,22 @@ public class MVC {
         model.setViewName("views/student");
         return model;
     }
+*/
+//EXPERIMENTAL
+    @RequestMapping(value = "student/studId={studentId}", method = RequestMethod.GET)
+    public @ResponseBody ModelAndView student(@PathVariable(value="studentId") int id) {
+        ModelAndView model = new ModelAndView();
+        StudentEntity student = dao.findStudentById(id);
+        model.addObject("student", student);
+        List<StudiengangEntity> sg = dao.findStudeiengangByStudentId(id);
+        model.addObject("studiengaenge", sg);
+        model.setViewName("views/student");
+        return model;
+    }
+
+
+
+
 
     @RequestMapping(value = {"laenderliste"}, method = RequestMethod.GET)
     public ModelAndView laenderlist() {
@@ -141,12 +158,13 @@ public class MVC {
         ModelAndView model = new ModelAndView();
         List<StudienplatzEntity> studienplatzliste = dao.findAllStudienplaetze();
         model.addObject("studienplatzliste", studienplatzliste);
+        model.addObject("dao", dao);
         model.setViewName("views/studienplatzliste");
         return model;
     }
 
-
-    @RequestMapping(value = {"studienplatz"}, method = RequestMethod.GET)
+/*
+    @RequestMapping(value = {"studienplatzById"}, method = RequestMethod.GET)
     public ModelAndView studienplatz(@RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId) {
         ModelAndView model = new ModelAndView();
         StudienplatzEntity studienplatz = dao.findStudeienplatzById(studienplatzId);
@@ -154,6 +172,30 @@ public class MVC {
         model.setViewName("views/studienplatz");
         return model;
     }
+*/
+
+    /*
+    @RequestMapping(value = "studienplatz", method = RequestMethod.GET)
+    public ModelAndView StudienplatzByStudent(@RequestParam("studentId") int studentId){
+        ModelAndView model = new ModelAndView();
+        StudienplatzEntity studienplatz = dao.findStudeienplatzByStudentId(studentId);
+        model.addObject("studienplatz", studienplatz);
+        model.setViewName("views/studienplatz");
+        model.addObject("dao", dao);
+        return model;
+    }
+*/
+    @RequestMapping(value = "studienplatz/studId={studentId}", method = RequestMethod.GET)
+    public @ResponseBody ModelAndView studienplatz(@PathVariable(value="studentId") int id) {
+        ModelAndView model = new ModelAndView();
+        StudienplatzEntity studienplatz = dao.findStudeienplatzByStudentId(id);
+        model.addObject("studienplatz", studienplatz);
+        model.setViewName("views/studienplatz");
+        return model;
+
+    }
+
+
 
     @RequestMapping(value = {"erfahrungsberichtliste"}, method = RequestMethod.GET)
     public ModelAndView erfahrungsberichtliste() {

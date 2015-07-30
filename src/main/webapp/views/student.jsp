@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page='fragments/header.jsp'>
-    <jsp:param name="pageName" value="Student"/>
+    <jsp:param name="pageName" value="Mein Profil"/>
 </jsp:include>
 <c:if test="${student != null}">
-    ${student.id}- ${student.vorname} - ${student.nachname}
+    ${student.id} - ${student.vorname} - ${student.nachname} - ${student.username} - ${student.email} - ${student.matrikelNummer}
 </c:if>
 belegt folgende Studiengänge<br>
 <c:forEach var="sg" items="${studiengaenge}">
@@ -13,3 +13,4 @@ belegt folgende Studiengänge<br>
 <br>
 ${uni.name} - ${uni.standort}
 <jsp:include page="fragments/footer.jsp"/>
+
