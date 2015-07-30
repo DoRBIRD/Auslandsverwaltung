@@ -109,8 +109,12 @@ public class MVC {
         ModelAndView model = new ModelAndView();
         StudentEntity student = dao.findStudentById(studentId);
         model.addObject("student", student);
-        List<StudiengangEntity> sg = dao.findStudeiengangByStudentId(studentId);
-        model.addObject("studiengaenge", sg);
+        List<StudiengangEntity> studiengangliste = dao.findStudeiengangByStudentId(studentId);
+        model.addObject("studiengangliste", studiengangliste);
+        List<UniversitaetEntity> universities = dao.findUniversitybyStudent(studentId);
+        model.addObject("universities", universities);
+
+
         model.setViewName("views/student");
         return model;
     }

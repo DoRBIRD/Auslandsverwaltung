@@ -189,6 +189,19 @@ public class DAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM StudienplatzEntity").list();
     }
+    @Transactional
+    public List<UniversitaetEntity> findUniversitybyStudent(int studentId) {
+        List<StudentMappingEntity> sml = findStudentMappingByStudentId(studentId);
+        List<StudiengangEntity> studiengangiste = new LinkedList<StudiengangEntity>();
+        List<UniversitaetEntity> universityliste = new LinkedList<UniversitaetEntity>();
+        for(StudentMappingEntity sm : sml){
+            studiengangiste.add(findStudeiengangById(sm.getStudiengang()));
+            for(StudiengangEntity sg : studiengangiste)
+                universityliste.add(findUniversityById(sg.getUniversitaet_id()));
+        }
+        return universityliste;
+    }
+
     //---Erfahrungsbericht DAO---
     @Transactional
     public ErfahrungsberichtEntity findEhrfahrungsberichtById(int erfahrungsberichtId) {
