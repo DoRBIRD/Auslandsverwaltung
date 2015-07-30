@@ -29,7 +29,7 @@
         <td>${erfahrungsbericht.betreff}</td>
         <td>${erfahrungsbericht.inhalt}</td>
         <td>${erfahrungsbericht.link}</td>
-        <td><a class="btn btn-default" href="/student?studentenId=${erfahrungsbericht.student_id}" role="button">${erfahrungsbericht.student_id}</td>
+        <td><a class="btn btn-default" href="/student?studentId=${erfahrungsbericht.student_id}" role="button">${erfahrungsbericht.student_id}</td>
     </tr>
 </table>
 
