@@ -18,7 +18,7 @@
     <c:if test="${sessionScope.user != null}">
         </li>
         <li>Mein Schreibtisch</li>
-        <li><a href="/student">Mein Profil</a></li>
+        <li><a href="/student/studId=${sessionScope.user.id}">Mein Profil</a></li>
         <li><a href="/hochschule">Meine Hochschule</a></li>
         <!--<li><a href="/land">Land</a></li>-->
         <li><a href="/studienplatz/studId=${sessionScope.user.id}">Mein Studienplatz</a></li>
