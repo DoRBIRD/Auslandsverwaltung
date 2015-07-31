@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page='fragments/header.jsp'>
-    <jsp:param name="pageName" value="Mein Profil"/>
+    <jsp:param name="pageName" value="Student"/>
 </jsp:include>
 
 

@@ -106,6 +106,8 @@ public class DAO {
         return query.list();
     }
 
+
+
     //---Land DAO---
     @Transactional
     public List<LandEntity> findAllLands() {
