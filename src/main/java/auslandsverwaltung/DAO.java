@@ -1,7 +1,9 @@
 package auslandsverwaltung;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -224,16 +226,86 @@ public class DAO {
 
 
     @Transactional
+    public Integer BerichtToDB(String betreff, String link, String inhalt, int studentid){
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        Integer employeeID = null;
+        try{
+            tx = session.beginTransaction();
+            ErfahrungsberichtEntity eb = new ErfahrungsberichtEntity();
+            eb.setBetreff(betreff);
+            eb.setInhalt(inhalt);
+            eb.setLink(link);
+            eb.setStudent_id(studentid);
+            employeeID = (Integer) session.save(eb);
+            tx.commit();
+        }catch (HibernateException e) {
+            if (tx!=null) tx.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return employeeID;
+    }
+
+
+    @Transactional
     public ErfahrungsberichtEntity createErfahrungsbericht(String betreff, String link, String inhalt, int studentid) {
         Session session = sessionFactory.getCurrentSession();
-        String hql = "";
-        ErfahrungsberichtEntity eb = null;
+        ErfahrungsberichtEntity eb = new ErfahrungsberichtEntity();
+        /*
+        eb.setBetreff("asd");
+        eb.setInhalt("asd");
+        eb.setLink("asd");
+        eb.setStudent_id(2);
+        */
         eb.setBetreff(betreff);
         eb.setInhalt(inhalt);
         eb.setLink(link);
         eb.setStudent_id(studentid);
-        session.save(eb);
+        session.persist(eb);
+
         return eb;
+
+         /*
+        String hql = "";
+        ErfahrungsberichtEntity eb = new ErfahrungsberichtEntity();
+        /*
+        eb.setBetreff(betreff);
+        eb.setInhalt(inhalt);
+        eb.setLink(link);
+        eb.setStudent_id(studentid);
+        */
+/*
+        try {
+            // create session
+            session.beginTransaction();
+            ErfahrungsberichtEntity eb = new ErfahrungsberichtEntity();
+            eb.setId(10);
+            eb.setBetreff("asd");
+            eb.setInhalt("asd");
+            eb.setLink("asd");
+            eb.setStudent_id(2);
+            session.save(eb);
+            session.getTransaction().commit();
+            return eb;
+        } finally {
+            session.getTransaction().rollback();
+            // close session
+        }
+
+/*
+        session.getTransaction().begin();
+        eb.setBetreff("asd");
+        eb.setInhalt("asd");
+        eb.setLink("asd");
+        eb.setStudent_id(2);
+
+        session.save(eb);
+        session.getTransaction().commit();
+
+        return eb;
+        */
     }
 
 }

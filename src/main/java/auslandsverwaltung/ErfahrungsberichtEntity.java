@@ -56,7 +56,7 @@ public class ErfahrungsberichtEntity {
     public void setStudent_id(int student_id) {
         Student_id = student_id;
     }
-
+/*
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name="student_id")
     private StudentEntity student;
@@ -68,6 +68,6 @@ public class ErfahrungsberichtEntity {
     public void setStudent(StudentEntity student) {
         this.student = student;
     }
-
+*/
 
 }

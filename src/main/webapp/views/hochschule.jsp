@@ -84,6 +84,4 @@
         </tr>
     </c:forEach>
 </table>
-
-
 <jsp:include page="fragments/footer.jsp"/>

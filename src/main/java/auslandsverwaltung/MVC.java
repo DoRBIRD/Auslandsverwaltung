@@ -228,6 +228,7 @@ public class MVC {
         model.setViewName("views/erfahrungsberichterstellen");
         return model;
     }
+
     @RequestMapping(value = {"submitbericht"}, method = RequestMethod.GET)
     public ModelAndView submitbericht(
             @RequestParam(value = "betreff", required = false, defaultValue = "-1") String betreff,
@@ -237,8 +238,8 @@ public class MVC {
     ) {
         ModelAndView model = new ModelAndView();
         ErfahrungsberichtEntity eb = dao.createErfahrungsbericht(betreff, link, inhalt, student);
-
-        model.setViewName("views/erfahrungsbericht?erfahrungsberichtId="+eb.getId());
+        //int eb = dao.BerichtToDB(betreff, link, inhalt, student);
+        model.setViewName("views/erfahrungsbericht?erfahrungsberichtId=");
         return model;
     }
 
