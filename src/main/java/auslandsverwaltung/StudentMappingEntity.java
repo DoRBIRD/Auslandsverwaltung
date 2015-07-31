@@ -28,4 +28,28 @@ public class StudentMappingEntity {
     public void setStudiengang(int Studiengang) {this.Studiengang = Studiengang; }
 
 
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="student")
+    private StudentEntity studi;
+
+    public StudentEntity getStudi() {
+        return studi;
+    }
+
+    public void setStudi(StudentEntity studi) {
+        this.studi = studi;
+    }
+
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="studiengang")
+    private StudiengangEntity studigang;
+
+    public StudiengangEntity getStudigang() {
+        return studigang;
+    }
+
+    public void setStudigang(StudiengangEntity studigang) {
+        this.studigang = studigang;
+    }
+
 }

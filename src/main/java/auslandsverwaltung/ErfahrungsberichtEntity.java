@@ -8,14 +8,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "erfahrungsbericht", schema = "", catalog = "Auslandsverwaltung")
 public class ErfahrungsberichtEntity {
+    @Id
+    @GeneratedValue
     private int id;
     private String Betreff;
     private String Inhalt;
     private String Link;
     private int Student_id;
 
-    @Id
-    @GeneratedValue
 
     public int getId() {
         return id;
@@ -56,4 +56,18 @@ public class ErfahrungsberichtEntity {
     public void setStudent_id(int student_id) {
         Student_id = student_id;
     }
+
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="student_id")
+    private StudentEntity student;
+
+    public StudentEntity getStudent() {
+        return student;
+    }
+
+    public void setStudent(StudentEntity student) {
+        this.student = student;
+    }
+
+
 }

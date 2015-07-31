@@ -9,15 +9,15 @@ import java.sql.Date;
 @Entity
 @Table(name = "studienplatz", schema = "", catalog = "Auslandsverwaltung")
 public class StudienplatzEntity {
-    private int id;
+    @Id
+    @GeneratedValue   private int id;
     private Date StartDatum;
     private Date EndDatum;
     private byte Verfuegbarkeit;
     private Integer Student_id;
     private int universitaet_id;
 
-    @Id
-    @GeneratedValue
+
     public int getId() {
         return id;
     }
@@ -64,5 +64,29 @@ public class StudienplatzEntity {
 
     public void setUniversitaet_id(int universitaet_id) {
         this.universitaet_id = universitaet_id;
+    }
+
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="universitaet_id", insertable = false, updatable = false)
+    private UniversitaetEntity universitaet;
+
+    public UniversitaetEntity getUniversitaet() {
+        return universitaet;
+    }
+
+    public void setUniversitaet(UniversitaetEntity universitaet) {
+        this.universitaet = universitaet;
+    }
+
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="student_id")
+    private StudentEntity student;
+
+    public StudentEntity getStudi() {
+        return student;
+    }
+
+    public void setStudi(StudentEntity studi) {
+        this.student = student;
     }
 }

@@ -1,6 +1,10 @@
 package auslandsverwaltung;
 
+import org.hibernate.annotations.ForeignKey;
+
+import javax.jws.Oneway;
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by steven on 15.06.15.
@@ -13,6 +17,7 @@ public class UniversitaetEntity {
     private int id;
     private String Name;
     private String Standort;
+
 
     public int getId() {
         return id;
@@ -37,5 +42,16 @@ public class UniversitaetEntity {
     public void setStandort(String Standort) {
         this.Standort = Standort;
     }
-}
 
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JoinColumn(name="standort")
+    private LandEntity land;
+
+    public LandEntity getLand() {
+        return land;
+    }
+
+    public void setLand(LandEntity land) {
+        this.land = land;
+    }
+}

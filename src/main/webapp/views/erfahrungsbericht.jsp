@@ -16,7 +16,6 @@
 
     <h1>${erfahrungsbericht.betreff}<a class="btn btn-default" href="${erfahrungsbericht.link}" role="button">Online lesen</a></h1><br>
     <p>${erfahrungsbericht.inhalt}</p>
-
     <a class="btn btn-default" href="/student?studentId=${student.id}" role="button">Autor: ${student.vorname} ${student.nachname} Email: ${student.email}</a>
 
 

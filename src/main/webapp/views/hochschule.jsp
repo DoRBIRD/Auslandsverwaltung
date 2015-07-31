@@ -15,6 +15,7 @@
     <tr>
         <td>${university.id}</td>
         <td>${university.name}</td>
+        <td>${university.land.name}</td>
         <td><a class="btn btn-default" href="/land?landId=${university.standort}"
                role="button">${university.standort}</a></td>
     </tr>

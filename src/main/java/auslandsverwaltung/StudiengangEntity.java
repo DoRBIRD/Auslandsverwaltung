@@ -8,13 +8,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "studiengang", schema = "", catalog = "Auslandsverwaltung")
 public class StudiengangEntity {
+    @Id
+    @GeneratedValue
     private int id;
     private String Bezeichnung;
     private Integer Fakultaet;
     private int universitaet_id;
 
-    @Id
-    @GeneratedValue
+
     public int getId() {
         return id;
     }
@@ -46,4 +47,18 @@ public class StudiengangEntity {
     public void setUniversitaet_id(int universitaet_id) {
         this.universitaet_id = universitaet_id;
     }
+
+
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="universitaet_id", insertable = false, updatable = false)
+    private UniversitaetEntity universitaet;
+
+    public UniversitaetEntity getUniversitaet() {
+        return universitaet;
+    }
+
+    public void setUniversitaet(UniversitaetEntity universitaet) {
+        this.universitaet = universitaet;
+    }
+
 }

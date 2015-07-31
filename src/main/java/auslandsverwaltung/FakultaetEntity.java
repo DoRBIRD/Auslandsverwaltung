@@ -8,12 +8,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "fakultaet", schema = "", catalog = "Auslandsverwaltung")
 public class FakultaetEntity {
-
+    @Id
+    @GeneratedValue
     private int id;
     private String Name;
 
-    @Id
-    @GeneratedValue
     public int getId() {
         return id;
     }
