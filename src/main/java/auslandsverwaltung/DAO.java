@@ -205,6 +205,7 @@ public class DAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM StudienplatzEntity").list();
     }
+
     //---Erfahrungsbericht DAO---
     @Transactional
     public ErfahrungsberichtEntity findEhrfahrungsberichtById(int erfahrungsberichtId) {
