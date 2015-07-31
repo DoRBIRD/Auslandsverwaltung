@@ -14,24 +14,28 @@
 </jsp:include>
 
 <table class="table">
-  <caption>Liste aller Studienplätze:</caption>
+  <caption>Liste aller verfügbaren Studienplätze:</caption>
   <thead>
   <tr>
     <th>#</th>
     <th>Start Datum</th>
     <th>End Datum</th>
-    <th>Verfuegbarkeit</th>
-    <th>Student</th>
+    <th>Universität</th>
   </tr>
   </thead>
+
+
+
   <c:forEach var="sp" items="${studienplatzliste}">
-    <tr><td><a class="btn btn-default" href="/studienplatz?studienplatzId=${sp.id}" role="button">${sp.id}</a> </td>
-      <td>${sp.startDatum}</td>
-      <td>${sp.endDatum}</td>
-      <td>${sp.verfuegbarkeit}</td>
-      <td><a class="btn btn-default" href="/student?studentenId=${ao.findStudentById(sp.id).id}" role="button">${dao.findStudentById(sp.id).vorname}</td>
-    </tr>
+      <c:if test="${sp.verfuegbarkeit == 1}">
+          <tr><td><a class="btn btn-default" href="/studienplatz?studienplatzId=${sp.id}" role="button">${sp.id}</a> </td>
+          <td>${sp.startDatum}</td>
+          <td>${sp.endDatum}</td>
+          <td>${dao.findUniversityById(sp.universitaet_id).name}</td>
+        </tr>
+      </c:if>
   </c:forEach>
+
 </table>
 
 <jsp:include page="fragments/footer.jsp" />
