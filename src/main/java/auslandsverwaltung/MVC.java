@@ -209,16 +209,61 @@ public class MVC {
         model.setViewName("views/erfahrungsberichtliste");
         return model;
     }
-
-
     @RequestMapping(value = {"erfahrungsbericht"}, method = RequestMethod.GET)
     public ModelAndView erfahrungsbericht(@RequestParam(value = "erfahrungsberichtId", required = false, defaultValue = "-1") int erfahrungsberichtId) {
         ModelAndView model = new ModelAndView();
         ErfahrungsberichtEntity erfahrungsbericht = dao.findEhrfahrungsberichtById(erfahrungsberichtId);
         model.addObject("erfahrungsbericht", erfahrungsbericht);
+        StudentEntity student = dao.findStudentById(erfahrungsbericht.getStudent_id());
+        model.addObject("student", student);
         model.setViewName("views/erfahrungsbericht");
         return model;
     }
+    @RequestMapping(value = {"erfahrungsberichterstellen"}, method = RequestMethod.GET)
+    public ModelAndView erfahrungsberichterstellen() {
+        ModelAndView model = new ModelAndView();
+        List<StudentEntity> studentenlist = dao.findAllStudents();
+        model.addObject("studentenlist", studentenlist);
+
+        model.setViewName("views/erfahrungsberichterstellen");
+        return model;
+    }
+    @RequestMapping(value = {"submitbericht"}, method = RequestMethod.GET)
+    public ModelAndView submitbericht(
+            @RequestParam(value = "betreff", required = false, defaultValue = "-1") String betreff,
+            @RequestParam(value = "student", required = false, defaultValue = "-1") int student,
+            @RequestParam(value = "link", required = false, defaultValue = "-1") String link,
+            @RequestParam(value = "inhalt", required = false, defaultValue = "-1") String inhalt
+    ) {
+        ModelAndView model = new ModelAndView();
+        ErfahrungsberichtEntity eb = dao.createErfahrungsbericht(betreff, link, inhalt, student);
+
+        model.setViewName("views/erfahrungsbericht?erfahrungsberichtId="+eb.getId());
+        return model;
+    }
+
+
+    @RequestMapping(value = {"studiengang"}, method = RequestMethod.GET)
+    public ModelAndView studiengangId(@RequestParam(value = "studiengangId", required = false, defaultValue = "-1") int studiengangId) {
+        ModelAndView model = new ModelAndView();
+
+        StudiengangEntity studiengang = dao.findStudeiengangById(studiengangId);
+        model.addObject("studiengang", studiengang);
+        model.setViewName("views/studiengang");
+        return model;
+    }
+    @RequestMapping(value = {"studiengangliste"}, method = RequestMethod.GET)
+    public ModelAndView studiengangliste() {
+        ModelAndView model = new ModelAndView();
+        List<StudiengangEntity> studiengangliste = dao.findAllStudiengaenge();
+        model.addObject("studiengangliste", studiengangliste);
+        model.setViewName("views/studiengangliste");
+        return model;
+    }
+
+
+
+
 
     @RequestMapping(value = {"allData"}, method = RequestMethod.GET)
     public ModelAndView allData() {

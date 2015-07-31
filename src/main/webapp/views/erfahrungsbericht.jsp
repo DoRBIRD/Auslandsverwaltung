@@ -14,23 +14,10 @@
     <jsp:param name="pageName" value="Erfahrungsbericht"/>
 </jsp:include>
 
-<table class="table">
-    <caption>Erfahrungsbericht:</caption>
-    <thead>
-    <tr>
-        <th>#</th>
-        <th>Betreff</th>
-        <th>Inhalt</th>
-        <th>Link</th>
-        <th>student</th>
-    </tr>
-    </thead>
-    <tr><td><a class="btn btn-default" href="/erfahrungsbericht?erfahrungsberichtId=${erfahrungsbericht.id}" role="button">${erfahrungsbericht.id}</a> </td>
-        <td>${erfahrungsbericht.betreff}</td>
-        <td>${erfahrungsbericht.inhalt}</td>
-        <td>${erfahrungsbericht.link}</td>
-        <td><a class="btn btn-default" href="/student?studentId=${erfahrungsbericht.student_id}" role="button">${erfahrungsbericht.student_id}</td>
-    </tr>
-</table>
+    <h1>${erfahrungsbericht.betreff}<a class="btn btn-default" href="${erfahrungsbericht.link}" role="button">Online lesen</a></h1><br>
+    <p>${erfahrungsbericht.inhalt}</p>
+
+    <a class="btn btn-default" href="/student?studentId=${student.id}" role="button">Autor: ${student.vorname} ${student.nachname} Email: ${student.email}</a>
+
 
 <jsp:include page="fragments/footer.jsp" />

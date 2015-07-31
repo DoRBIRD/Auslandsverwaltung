@@ -223,4 +223,17 @@ public class DAO {
     }
 
 
+    @Transactional
+    public ErfahrungsberichtEntity createErfahrungsbericht(String betreff, String link, String inhalt, int studentid) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "";
+        ErfahrungsberichtEntity eb = null;
+        eb.setBetreff(betreff);
+        eb.setInhalt(inhalt);
+        eb.setLink(link);
+        eb.setStudent_id(studentid);
+        session.save(eb);
+        return eb;
+    }
+
 }

@@ -9,8 +9,10 @@
         <li><a href="/hochschulliste">Liste aller Hochschulen</a></li>
         <li><a href="/studentenliste">Liste aller Studenten</a></li>
         <li><a href="/laenderliste">Liste aller L&auml;nder</a></li>
+        <li><a href="/studiengangliste"> Liste aller Studieng&auml;nge</a></li>
         <li><a href="/studienplatzliste">Liste aller verfügbaren Studienpl&auml;tze</a></li>
         <li><a href="/erfahrungsberichtliste">Liste aller Erfahrungsberichte</a></li>
+
 
         <li>
             <hr/>
@@ -23,7 +25,7 @@
         <!--<li><a href="/land">Land</a></li>-->
         <li><a href="/studienplatz/studId=${sessionScope.user.id}">Mein Studienplatz</a></li>
         <li><a href="/erfahrungsbericht">Mein Erfahrungsbericht</a></li>
-
+        <li><a href="/erfahrungsberichterstellen">schreibe einen Erfahrungsbericht</a></li>
         <li>
             <hr/>
         </li>
