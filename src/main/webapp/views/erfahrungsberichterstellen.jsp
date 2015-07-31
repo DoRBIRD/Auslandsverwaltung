@@ -22,7 +22,7 @@
     </select>
   </div>
   <div class="form-group">
-    <label for="link">eterner link</label>
+    <label for="link">externer link</label>
     <input name="link" type="link" class="form-control" id="link" placeholder="http//:www.example.com">
   </div>
   <div class="form-group">
