@@ -223,7 +223,15 @@ public class DAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM ErfahrungsberichtEntity").list();
     }
+    @Transactional
+    public List<ErfahrungsberichtEntity> findEhrfahrungsberichtByStudentId(int studentId) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "from ErfahrungsberichtEntity AS EB WHERE EB.studentId = :studentId";
+        org.hibernate.Query query = session.createQuery(hql);
+        query.setParameter("studentId",studentId);
 
+        return query.list();
+    }
 
     @Transactional
     public Integer BerichtToDB(String betreff, String link, String inhalt, int studentid){
@@ -236,7 +244,7 @@ public class DAO {
             eb.setBetreff(betreff);
             eb.setInhalt(inhalt);
             eb.setLink(link);
-            eb.setStudent_id(studentid);
+            eb.setStudentId(studentid);
             employeeID = (Integer) session.save(eb);
             tx.commit();
         }catch (HibernateException e) {
@@ -262,7 +270,7 @@ public class DAO {
         eb.setBetreff(betreff);
         eb.setInhalt(inhalt);
         eb.setLink(link);
-        eb.setStudent_id(studentid);
+        eb.setStudentId(studentid);
         session.persist(eb);
 
         return eb;

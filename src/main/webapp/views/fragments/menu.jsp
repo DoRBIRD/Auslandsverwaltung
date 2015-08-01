@@ -21,10 +21,10 @@
         </li>
         <li>Mein Schreibtisch</li>
         <li><a href="/Profil/studId=${sessionScope.user.id}">Mein Profil</a></li>
-        <li><a href="/hochschule">Meine Hochschule</a></li>
+        <li><a href="/hochschule?hochschulId=">Meine Hochschule</a></li>
         <!--<li><a href="/land">Land</a></li>-->
         <li><a href="/studienplatz/studId=${sessionScope.user.id}">Mein Studienplatz</a></li>
-        <li><a href="/erfahrungsbericht">Mein Erfahrungsbericht</a></li>
+        <li><a href="/erfahrungsberichtliste?studentId=${sessionScope.user.id}">Meine Erfahrungsberichte</a></li>
         <li><a href="/erfahrungsberichterstellen">schreibe einen Erfahrungsbericht</a></li>
         <li>
             <hr/>

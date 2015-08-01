@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -202,9 +203,11 @@ public class MVC {
 
 
     @RequestMapping(value = {"erfahrungsberichtliste"}, method = RequestMethod.GET)
-    public ModelAndView erfahrungsberichtliste() {
+    public ModelAndView erfahrungsberichtliste(@RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
-        List<ErfahrungsberichtEntity> erfahrungsberichtliste = dao.findAllEhrfahrungsbericht();
+        List<ErfahrungsberichtEntity> erfahrungsberichtliste = new LinkedList<ErfahrungsberichtEntity>();
+        if(studentId<0)erfahrungsberichtliste = dao.findAllEhrfahrungsbericht();
+        else erfahrungsberichtliste = dao.findEhrfahrungsberichtByStudentId(studentId);
         model.addObject("erfahrungsberichtliste", erfahrungsberichtliste);
         model.setViewName("views/erfahrungsberichtliste");
         return model;
@@ -214,7 +217,7 @@ public class MVC {
         ModelAndView model = new ModelAndView();
         ErfahrungsberichtEntity erfahrungsbericht = dao.findEhrfahrungsberichtById(erfahrungsberichtId);
         model.addObject("erfahrungsbericht", erfahrungsbericht);
-        StudentEntity student = dao.findStudentById(erfahrungsbericht.getStudent_id());
+        StudentEntity student = dao.findStudentById(erfahrungsbericht.getStudentId());
         model.addObject("student", student);
         model.setViewName("views/erfahrungsbericht");
         return model;
@@ -230,17 +233,14 @@ public class MVC {
     }
 
     @RequestMapping(value = {"submitbericht"}, method = RequestMethod.GET)
-    public ModelAndView submitbericht(
+    public String submitbericht(
             @RequestParam(value = "betreff", required = false, defaultValue = "-1") String betreff,
             @RequestParam(value = "student", required = false, defaultValue = "-1") int student,
             @RequestParam(value = "link", required = false, defaultValue = "-1") String link,
             @RequestParam(value = "inhalt", required = false, defaultValue = "-1") String inhalt
     ) {
-        ModelAndView model = new ModelAndView();
         ErfahrungsberichtEntity eb = dao.createErfahrungsbericht(betreff, link, inhalt, student);
-        //int eb = dao.BerichtToDB(betreff, link, inhalt, student);
-        model.setViewName("views/erfahrungsbericht?erfahrungsberichtId=");
-        return model;
+        return "redirect:/erfahrungsbericht?erfahrungsberichtId="+eb.getId();
     }
 
 

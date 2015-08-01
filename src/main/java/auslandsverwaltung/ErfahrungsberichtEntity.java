@@ -14,7 +14,8 @@ public class ErfahrungsberichtEntity {
     private String Betreff;
     private String Inhalt;
     private String Link;
-    private int Student_id;
+    @Column(name="Student_id")
+    private int studentId;
 
 
     public int getId() {
@@ -49,12 +50,12 @@ public class ErfahrungsberichtEntity {
         Link = link;
     }
 
-    public int getStudent_id() {
-        return Student_id;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setStudent_id(int student_id) {
-        Student_id = student_id;
+    public void setStudentId(int studentId) {
+        studentId = studentId;
     }
 /*
     @ManyToOne(fetch=FetchType.EAGER)
