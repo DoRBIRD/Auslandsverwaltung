@@ -15,6 +15,7 @@
       <th>End Datum</th>
       <th>Verfuegbarkeit</th>
       <th>Universität</th>
+      <th>Student</th>
     </tr>
 
     </thead>

@@ -236,6 +236,16 @@ public class MVC {
         return model;
     }
 
+
+    @RequestMapping(value = {"studienplatzsichern"}, method = RequestMethod.GET)
+    public String studienplatzsichern(
+            @RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId,
+            @RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId
+    ) {
+        StudienplatzEntity sp = dao.updateStudienplatz(studienplatzId, studentId);
+        return "redirect:/studienplatz?studienplatzId=" + sp.getId();
+
+    }
     @RequestMapping(value = {"allData"}, method = RequestMethod.GET)
     public ModelAndView allData() {
         ModelAndView model = new ModelAndView();

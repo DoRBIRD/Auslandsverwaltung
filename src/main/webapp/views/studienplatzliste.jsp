@@ -21,17 +21,24 @@
     <th>Start Datum</th>
     <th>End Datum</th>
     <th>Universität</th>
+      <c:if test="${sessionScope.user.id > 0}">
+          <th>Studienplatz sichern</th>
+      </c:if>
   </tr>
   </thead>
 
 
 
   <c:forEach var="sp" items="${studienplatzliste}">
-      <c:if test="${sp.verfuegbarkeit == 1}">
-          <tr><td><a class="btn btn-default" href="/studienplatz?studienplatzId=${sp.id}" role="button">${sp.id}</a> </td>
+      <c:if test="${sp.verfuegbarkeit}">
+        <tr>
+          <td><a class="btn btn-default" href="/studienplatz?studienplatzId=${sp.id}" role="button">${sp.id}</a> </td>
           <td>${sp.startDatum}</td>
           <td>${sp.endDatum}</td>
           <td>${dao.findUniversityById(sp.universitaet_id).name}</td>
+          <c:if test="${sessionScope.user.id > 0}">
+              <td><a class="btn btn-default" href="/studienplatzsichern?studienplatzId=${sp.id}&studentenId=${sessionScope.user.id}" role="button">Studienplatz sichern</a></td>
+          </c:if>
         </tr>
       </c:if>
   </c:forEach>

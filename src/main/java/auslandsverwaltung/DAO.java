@@ -147,7 +147,6 @@ public class DAO {
         List studentMapping = query.list();
         return studentMapping;
     }
-
     //---Studiengang DAO---
     @Transactional
     public StudiengangEntity findStudeiengangById(int studiengangId) {
@@ -195,18 +194,27 @@ public class DAO {
     @Transactional
     public StudienplatzEntity findStudeienplatzByStudentId(int student_id) {
         Session session = sessionFactory.getCurrentSession();
-        String hql = "from StudienplatzEntity AS SP WHERE SP.student_id = :student_id";
+        String hql = "from StudienplatzEntity AS SP WHERE SP.Student_id = :student_id";
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("student_id",student_id);
         List<StudienplatzEntity> studienplatzliste = query.list();
         return (studienplatzliste.isEmpty() ? null : (StudienplatzEntity) studienplatzliste.get(0));
     }
-
     @Transactional
     public List<StudienplatzEntity> findAllStudienplaetze() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM StudienplatzEntity").list();
     }
+    @Transactional
+    public StudienplatzEntity updateStudienplatz(int studienplatzId, int studentId) {
+        Session session = sessionFactory.getCurrentSession();
+        StudienplatzEntity sp = findStudeienplatzById(studienplatzId);
+        sp.setStudent_id(studentId);
+        sp.setVerfuegbarkeit(false);
+        session.persist(sp);
+        return sp;
+    }
+
 
     //---Erfahrungsbericht DAO---
     @Transactional

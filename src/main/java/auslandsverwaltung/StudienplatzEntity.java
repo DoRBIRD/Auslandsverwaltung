@@ -13,7 +13,7 @@ public class StudienplatzEntity {
     @GeneratedValue   private int id;
     private Date StartDatum;
     private Date EndDatum;
-    private byte Verfuegbarkeit;
+    private boolean Verfuegbarkeit;
     private Integer Student_id;
     private int universitaet_id;
 
@@ -42,11 +42,11 @@ public class StudienplatzEntity {
         EndDatum = endDatum;
     }
 
-    public byte getVerfuegbarkeit() {
+    public boolean getVerfuegbarkeit() {
         return Verfuegbarkeit;
     }
 
-    public void setVerfuegbarkeit(byte verfuegbarkeit) {
+    public void setVerfuegbarkeit(boolean verfuegbarkeit) {
         Verfuegbarkeit = verfuegbarkeit;
     }
 
