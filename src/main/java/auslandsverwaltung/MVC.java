@@ -180,7 +180,7 @@ public class MVC {
     @RequestMapping(value = {"erfahrungsberichtliste"}, method = RequestMethod.GET)
     public ModelAndView erfahrungsberichtliste(@RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
-        List<ErfahrungsberichtEntity> erfahrungsberichtliste = new LinkedList<ErfahrungsberichtEntity>();
+        List<ErfahrungsberichtEntity> erfahrungsberichtliste;
         if(studentId<0)erfahrungsberichtliste = dao.findAllEhrfahrungsbericht();
         else erfahrungsberichtliste = dao.findEhrfahrungsberichtByStudentId(studentId);
         model.addObject("erfahrungsberichtliste", erfahrungsberichtliste);
