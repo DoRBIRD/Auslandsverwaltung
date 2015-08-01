@@ -26,8 +26,7 @@ public class DAO {
     @Transactional
     public List<StudentEntity> findAllStudents() {
         Session session = sessionFactory.getCurrentSession();
-        List studenten = session.createQuery("from StudentEntity").list();
-        return studenten;
+        return session.createQuery("from StudentEntity").list();
     }
     @Transactional //noch nicht getestet
     public StudentEntity findStudentByUserPass(String username, String password) {
@@ -135,8 +134,7 @@ public class DAO {
         String hql = "from StudentMappingEntity AS SM WHERE SM.Student = :studentId";
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("studentId",studentId);
-        List studentMapping = query.list();
-        return studentMapping;
+        return query.list();
     }
     @Transactional
     public List<StudentMappingEntity> findStudentMappingByStudiengangId(int studiengangId) {
@@ -144,8 +142,7 @@ public class DAO {
         String hql = "from StudentMappingEntity AS SM WHERE SM.Studiengang = :studiengangId";
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("studiengangId",studiengangId);
-        List studentMapping = query.list();
-        return studentMapping;
+        return query.list();
     }
     //---Studiengang DAO---
     @Transactional
@@ -187,18 +184,18 @@ public class DAO {
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("id",id);
         List<StudienplatzEntity> studienplatzliste = query.list();
-        return (studienplatzliste.isEmpty() ? null : (StudienplatzEntity) studienplatzliste.get(0));
+        return (studienplatzliste.isEmpty() ? null : studienplatzliste.get(0));
     }
 
 
     @Transactional
     public StudienplatzEntity findStudeienplatzByStudentId(int student_id) {
         Session session = sessionFactory.getCurrentSession();
-        String hql = "from StudienplatzEntity AS SP WHERE SP.Student_id = :student_id";
+        String hql = "from StudienplatzEntity AS SP WHERE SP.studentId = :student_id";
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("student_id",student_id);
         List<StudienplatzEntity> studienplatzliste = query.list();
-        return (studienplatzliste.isEmpty() ? null : (StudienplatzEntity) studienplatzliste.get(0));
+        return (studienplatzliste.isEmpty() ? null : studienplatzliste.get(0));
     }
     @Transactional
     public List<StudienplatzEntity> findAllStudienplaetze() {
@@ -209,9 +206,11 @@ public class DAO {
     public StudienplatzEntity updateStudienplatz(int studienplatzId, int studentId) {
         Session session = sessionFactory.getCurrentSession();
         StudienplatzEntity sp = findStudeienplatzById(studienplatzId);
-        sp.setStudent_id(studentId);
         sp.setVerfuegbarkeit(false);
-        session.persist(sp);
+        sp.setStudentId(studentId);
+        //session.persist(sp);
+        session.save(sp);
+
         return sp;
     }
 
@@ -224,7 +223,7 @@ public class DAO {
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("erfahrungsberichtId",erfahrungsberichtId);
         List<ErfahrungsberichtEntity> erfahrungsberichtliste = query.list();
-        return (erfahrungsberichtliste.isEmpty() ? null : (ErfahrungsberichtEntity) erfahrungsberichtliste.get(0));
+        return (erfahrungsberichtliste.isEmpty() ? null : erfahrungsberichtliste.get(0));
     }
     @Transactional
     public List<ErfahrungsberichtEntity> findAllEhrfahrungsbericht() {

@@ -14,7 +14,8 @@ public class StudienplatzEntity {
     private Date StartDatum;
     private Date EndDatum;
     private boolean Verfuegbarkeit;
-    private Integer Student_id;
+    @Column(name="Student_id")
+    private Integer studentId;
     private int universitaet_id;
 
 
@@ -50,12 +51,12 @@ public class StudienplatzEntity {
         Verfuegbarkeit = verfuegbarkeit;
     }
 
-    public Integer getStudent_id() {
-        return Student_id;
+    public Integer getStudentId() {
+        return studentId;
     }
 
-    public void setStudent_id(Integer student_id) {
-        Student_id = student_id;
+    public void setStudentId(Integer studentId) {
+        studentId = studentId;
     }
 
     public int getUniversitaet_id() {

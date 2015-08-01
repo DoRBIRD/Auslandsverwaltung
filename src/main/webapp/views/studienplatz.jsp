@@ -24,7 +24,7 @@
       <td>${studienplatz.endDatum}</td>
       <td>${studienplatz.verfuegbarkeit}</td>
       <td>${studienplatz.universitaet_id}</td>
-      <td><a class="btn btn-default" href="student?studentenId=${studienplatz.student_id}" role="button">${studienplatz.student_id}</a></td>
+      <td><a class="btn btn-default" href="student?studentenId=${studienplatz.studentId}" role="button">${studienplatz.studentId}</a></td>
     </tr>
   </table>
 </c:if>
