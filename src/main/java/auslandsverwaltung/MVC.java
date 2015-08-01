@@ -117,7 +117,6 @@ public class MVC {
         return model;
     }
 
-//EXPERIMENTAL
     @RequestMapping(value = "Profil/studId={studentId}", method = RequestMethod.GET)
     public @ResponseBody ModelAndView Profil(@PathVariable(value="studentId") int id) {
         ModelAndView model = new ModelAndView();
@@ -160,28 +159,6 @@ public class MVC {
         return model;
     }
 
-/*
-    @RequestMapping(value = {"studienplatzById"}, method = RequestMethod.GET)
-    public ModelAndView studienplatz(@RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId) {
-        ModelAndView model = new ModelAndView();
-        StudienplatzEntity studienplatz = dao.findStudeienplatzById(studienplatzId);
-        model.addObject("studienplatz", studienplatz);
-        model.setViewName("views/studienplatz");
-        return model;
-    }
-*/
-
-    /*
-    @RequestMapping(value = "studienplatz", method = RequestMethod.GET)
-    public ModelAndView StudienplatzByStudent(@RequestParam("studentId") int studentId){
-        ModelAndView model = new ModelAndView();
-        StudienplatzEntity studienplatz = dao.findStudeienplatzByStudentId(studentId);
-        model.addObject("studienplatz", studienplatz);
-        model.setViewName("views/studienplatz");
-        model.addObject("dao", dao);
-        return model;
-    }
-*/
     @RequestMapping(value = "studienplatz/studId={studentId}", method = RequestMethod.GET)
     public @ResponseBody ModelAndView studienplatzByStudent(@PathVariable(value="studentId") int id) {
         ModelAndView model = new ModelAndView();
@@ -199,8 +176,6 @@ public class MVC {
         model.setViewName("views/studienplatz");
         return model;
     }
-
-
 
     @RequestMapping(value = {"erfahrungsberichtliste"}, method = RequestMethod.GET)
     public ModelAndView erfahrungsberichtliste(@RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
@@ -247,7 +222,6 @@ public class MVC {
     @RequestMapping(value = {"studiengang"}, method = RequestMethod.GET)
     public ModelAndView studiengangId(@RequestParam(value = "studiengangId", required = false, defaultValue = "-1") int studiengangId) {
         ModelAndView model = new ModelAndView();
-
         StudiengangEntity studiengang = dao.findStudeiengangById(studiengangId);
         model.addObject("studiengang", studiengang);
         model.setViewName("views/studiengang");
@@ -261,10 +235,6 @@ public class MVC {
         model.setViewName("views/studiengangliste");
         return model;
     }
-
-
-
-
 
     @RequestMapping(value = {"allData"}, method = RequestMethod.GET)
     public ModelAndView allData() {
@@ -289,13 +259,4 @@ public class MVC {
         return model;
     }
 
-/*
-    @RequestMapping(method = RequestMethod.GET)
-    public String list(Model model) {
-        List<StudentEntity> studenten = dao.findAllStudents();
-        model.addAttribute("studenten", studenten);
-
-        return "index";
-    }
-*/
 }

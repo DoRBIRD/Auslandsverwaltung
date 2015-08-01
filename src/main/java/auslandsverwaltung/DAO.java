@@ -261,12 +261,6 @@ public class DAO {
     public ErfahrungsberichtEntity createErfahrungsbericht(String betreff, String link, String inhalt, int studentid) {
         Session session = sessionFactory.getCurrentSession();
         ErfahrungsberichtEntity eb = new ErfahrungsberichtEntity();
-        /*
-        eb.setBetreff("asd");
-        eb.setInhalt("asd");
-        eb.setLink("asd");
-        eb.setStudent_id(2);
-        */
         eb.setBetreff(betreff);
         eb.setInhalt(inhalt);
         eb.setLink(link);
@@ -275,45 +269,7 @@ public class DAO {
 
         return eb;
 
-         /*
-        String hql = "";
-        ErfahrungsberichtEntity eb = new ErfahrungsberichtEntity();
-        /*
-        eb.setBetreff(betreff);
-        eb.setInhalt(inhalt);
-        eb.setLink(link);
-        eb.setStudent_id(studentid);
-        */
-/*
-        try {
-            // create session
-            session.beginTransaction();
-            ErfahrungsberichtEntity eb = new ErfahrungsberichtEntity();
-            eb.setId(10);
-            eb.setBetreff("asd");
-            eb.setInhalt("asd");
-            eb.setLink("asd");
-            eb.setStudent_id(2);
-            session.save(eb);
-            session.getTransaction().commit();
-            return eb;
-        } finally {
-            session.getTransaction().rollback();
-            // close session
-        }
 
-/*
-        session.getTransaction().begin();
-        eb.setBetreff("asd");
-        eb.setInhalt("asd");
-        eb.setLink("asd");
-        eb.setStudent_id(2);
-
-        session.save(eb);
-        session.getTransaction().commit();
-
-        return eb;
-        */
     }
 
 }
