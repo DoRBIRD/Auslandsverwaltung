@@ -23,7 +23,7 @@
         <li><a href="/Profil/studId=${sessionScope.user.id}">Mein Profil</a></li>
         <li><a href="/hochschule?studentId=${sessionScope.user.id}">Meine Hochschule</a></li>
         <!--<li><a href="/land">Land</a></li>-->
-        <li><a href="/studienplatzliste/studentId=${sessionScope.user.id}">Mein Studienplatz</a></li>
+        <li><a href="/studienplatz?studentId=${sessionScope.user.id}">Mein Studienplatz</a></li>
         <li><a href="/erfahrungsberichtliste?studentId=${sessionScope.user.id}">Meine Erfahrungsberichte</a></li>
         <li><a href="/erfahrungsberichterstellen">schreibe einen Erfahrungsbericht</a></li>
         <li>

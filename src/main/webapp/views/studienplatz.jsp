@@ -23,7 +23,7 @@
       <td>${studienplatz.startDatum}</td>
       <td>${studienplatz.endDatum}</td>
       <td>${studienplatz.verfuegbarkeit}</td>
-      <td>${studienplatz.universitaet_id}</td>
+      <td><a class="btn btn-default" href="hochschule?hochschulId=${studienplatz.universitaet_id}&studentId=${sessionScope.user.id}" role="button">${studienplatz.universitaet_id}</td>
       <td><a class="btn btn-default" href="student?studentenId=${studienplatz.studentId}" role="button">${studienplatz.studentId}</a></td>
     </tr>
   </table>

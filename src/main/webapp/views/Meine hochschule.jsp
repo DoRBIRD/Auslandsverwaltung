@@ -8,8 +8,8 @@
     <thead>
     <tr>
         <th>#</th>
-        <th>name</th>
-        <th>standort</th>
+        <th>Name</th>
+        <th>Standort</th>
     </tr>
     </thead>
     <tr>

@@ -35,7 +35,7 @@
           <td><a class="btn btn-default" href="studienplatz?studienplatzId=${sp.id}" role="button">${sp.id}</a> </td>
           <td>${sp.startDatum}</td>
           <td>${sp.endDatum}</td>
-          <td>${dao.findUniversityById(sp.universitaet_id).name}</td>
+          <td><a class="btn btn-default" href="hochschule?hochschulId=${sp.universitaet_id}&studentId=${sessionScope.user.id}" role="button">${dao.findUniversityById(sp.universitaet_id).name}</a></td>
           <c:if test="${sessionScope.user.id > 0}">
               <td><a class="btn btn-default" href="studienplatzsichern?studienplatzId=${sp.id}&studentId=${sessionScope.user.id}" role="button">Studienplatz sichern</a></td>
           </c:if>

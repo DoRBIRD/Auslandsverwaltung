@@ -168,10 +168,13 @@ public class MVC {
         return model;
     }
 
-    @RequestMapping(value = {"studienplatz", "studienplatz/studienplatz"}, method = RequestMethod.GET)
-    public ModelAndView studienplatz(@RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId) {
+    @RequestMapping(value = {"studienplatz"}, method = RequestMethod.GET)
+    public ModelAndView studienplatz(@RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId,
+                                     @RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
-        StudienplatzEntity studienplatz = dao.findStudeienplatzById(studienplatzId);
+        StudienplatzEntity studienplatz;
+        if(studentId<0) studienplatz = dao.findStudeienplatzById(studienplatzId);
+        else studienplatz = dao.findStudeienplatzByStudentId(studentId).get(0);
         model.addObject("studienplatz", studienplatz);
         model.setViewName("views/studienplatz");
         return model;

@@ -9,10 +9,9 @@
   <thead>
   <tr>
     <th>#</th>
-    <th>betreff</th>
-
+    <th>Betreff</th>
     <th>Link</th>
-    <th>student</th>
+    <th>Student</th>
   </tr>
   </thead>
   <c:forEach var="eb" items="${erfahrungsberichtliste}">
