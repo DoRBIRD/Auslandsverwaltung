@@ -32,7 +32,7 @@
         <th>Bezeichnung</th>
     </tr>
     </thead>
-    <c:forEach var="sg" items="${studiengangliste}">
+    <c:forEach var="sg" items="${studiengaenge}">
         <tr>
             <td><a class="btn btn-default" href="/studiengang?studiengang=${sg.id}" role="button">${sg.id}</a> </td>
             <td>${sg.fakultaet}</td>
@@ -50,7 +50,7 @@
         <th>Standort</th>
     </tr>
     </thead>
-    <c:forEach var="u" items="${universities}">
+    <c:forEach var="u" items="${unis}">
         <tr>
             <td><a class="btn btn-default" href="/hochschule?hochschulId=${u.id}" role="button">${u.id}</a> </td>
             <td>${u.name}</td>

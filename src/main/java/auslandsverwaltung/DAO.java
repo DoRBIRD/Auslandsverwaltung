@@ -1,9 +1,6 @@
 package auslandsverwaltung;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,40 +44,38 @@ public class DAO {
         List students = query.list();
         return (students.isEmpty() ? null : (StudentEntity) students.get(0));
     }
+
     @Transactional
     public List<StudiengangEntity> findStudeiengangByStudentId(int studentId) {
         Session session = sessionFactory.getCurrentSession();
-        List<StudentMappingEntity> studentMapping = findStudentMappingByStudentId(studentId);
-        List<StudiengangEntity> studiengaenge = new LinkedList<StudiengangEntity>();
-        for(StudentMappingEntity sm : studentMapping)
-            studiengaenge.add(findStudeiengangById(sm.getStudiengang()));
-        return studiengaenge;
-    }
-    @Transactional //version die gehen w�rde mit beziehungen in den hybernate entitys
-    public List<StudentEntity> findStudentByUniversityId(int uniId) {
-        Session session = sessionFactory.getCurrentSession();
-        String hql = "SELECT s.id, s.Vorname, s.Username, s.Password, s.MatrikelNummer, s.Email " +
-                "FROM StudentEntity AS s " +
-                "JOIN s.StudentMappingEntity AS sm " +
-                "JOIN sm.StudiengangEntity AS sg " +
-                "WHERE sg.universitaet_id = :uniId GROUP BY s.id";
-        org.hibernate.Query query = session.createQuery(hql);
-        query.setParameter("uniId", uniId);
+        String sql = "SELECT sg.* " +
+                "FROM studiengang AS sg " +
+                "INNER JOIN student_has_studiengang AS sm ON sg.id = sm.Studiengang " +
+                "INNER JOIN student AS s ON sm.Student = s.id " +
+                "INNER JOIN universitaet AS u ON sg.universitaet_id = u.id " +
+                "WHERE s.id = :studentId " +
+                "ORDER BY sg.id";
+        SQLQuery query = session.createSQLQuery(sql);
+        query.setInteger("studentId", studentId);
+        query.addEntity(StudiengangEntity.class);
         return query.list();
     }
-    @Transactional //schlechte version version
-    public List<StudentEntity> findStudentByUniversityId2(int uniId) {
-        Session session = sessionFactory.getCurrentSession();
-        List<StudiengangEntity> studiengangListe = findStudeiengangByUniId(uniId);
-        List<StudentEntity> studentenliste = new LinkedList<StudentEntity>();
-        for(StudiengangEntity studiengang : studiengangListe){
-            List<StudentMappingEntity> studentenMappingliste = findStudentMappingByStudiengangId(studiengang.getId());
-            for(StudentMappingEntity studentennmap : studentenMappingliste)
-                studentenliste.add(findStudentById(studentennmap.getStudent()));
-        }
-        return studentenliste;
-    }
 
+    @Transactional
+    public List<StudentEntity> findStudentByUniversityId(int uniId) {
+        Session session = sessionFactory.getCurrentSession();
+        String sql = "SELECT s.id, s.MatrikelNummer, s.Vorname, s.Nachname, s.Email, s.Username, s.Password " +
+                "FROM student AS s " +
+                "INNER JOIN student_has_studiengang AS sm ON s.id = sm.student " +
+                "INNER JOIN studiengang AS sg ON sm.Studiengang = sg.id " +
+                "INNER JOIN universitaet AS u ON sg.universitaet_id = u.id " +
+                "WHERE u.id = :uniId " +
+                "ORDER BY s.id";
+        SQLQuery query = session.createSQLQuery(sql);
+        query.setInteger("uniId", uniId);
+        query.addEntity(StudentEntity.class);
+        return query.list();
+    }
 
     //---University DAO---
     @Transactional
@@ -108,6 +103,20 @@ public class DAO {
     }
 
 
+    @Transactional
+    public List<UniversitaetEntity> findUniversityByStudentId(int studentId) {
+        Session session = sessionFactory.getCurrentSession();
+        String sql= "SELECT u.* FROM universitaet AS u " +
+                "INNER JOIN studiengang AS sg ON u.id = sg.universitaet_id " +
+                "INNER JOIN student_has_studiengang AS sm ON sg.id = sm.Studiengang " +
+                "INNER JOIN student AS s ON sm.Student = s.id " +
+                "WHERE s.id = :studentId " +
+                "ORDER BY u.id";
+        SQLQuery query = session.createSQLQuery(sql);
+        query.setInteger("studentId", studentId);
+        query.addEntity(UniversitaetEntity.class);
+        return query.list();
+    }
 
     //---Land DAO---
     @Transactional
@@ -189,25 +198,28 @@ public class DAO {
 
 
     @Transactional
-    public StudienplatzEntity findStudeienplatzByStudentId(int student_id) {
+    public List<StudienplatzEntity> findStudeienplatzByStudentId(int student_id) {
         Session session = sessionFactory.getCurrentSession();
         String hql = "from StudienplatzEntity AS SP WHERE SP.studentId = :student_id";
         org.hibernate.Query query = session.createQuery(hql);
         query.setParameter("student_id",student_id);
-        List<StudienplatzEntity> studienplatzliste = query.list();
-        return (studienplatzliste.isEmpty() ? null : studienplatzliste.get(0));
+        return query.list();
     }
     @Transactional
     public List<StudienplatzEntity> findAllStudienplaetze() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("FROM StudienplatzEntity").list();
     }
+
     @Transactional
     public StudienplatzEntity updateStudienplatz(int studienplatzId, int studentId) {
         Session session = sessionFactory.getCurrentSession();
+        String sql = "UPDATE studienplatz SET Student_id = :studentId, Verfuegbarkeit = 0 WHERE id = :studienplatzId";
+        SQLQuery query = session.createSQLQuery(sql);
+        query.setInteger("studentId", studentId);
+        query.setInteger("studienplatzId", studienplatzId);
+        query.executeUpdate();
         StudienplatzEntity sp = findStudeienplatzById(studienplatzId);
-        sp.setVerfuegbarkeit(false);
-        sp.setStudentId(studentId);
         //session.persist(sp);
         session.save(sp);
 

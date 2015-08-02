@@ -1,21 +1,12 @@
 package auslandsverwaltung;
 
-import com.sun.tracing.dtrace.Attributes;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
-import org.springframework.web.servlet.support.SessionFlashMapManager;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -83,19 +74,23 @@ public class MVC {
     }
 
     @RequestMapping(value = {"hochschule"}, method = RequestMethod.GET)
-    public ModelAndView hochschule(@RequestParam(value = "hochschulId", required = false, defaultValue = "-1") int universities) {
+    public ModelAndView hochschule(@RequestParam(value = "hochschulId", required = false, defaultValue = "-1") int uniId,
+                                   @RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
-
-        UniversitaetEntity university = dao.findUniversityById(universities);
+        UniversitaetEntity university;
+        if(studentId > 0){
+            university = dao.findUniversityByStudentId(studentId).get(0);
+            uniId = university.getId();
+        }else university = dao.findUniversityById(uniId);
         model.addObject("university", university);
 
-        List<StudiengangEntity> studiengangListe = dao.findStudeiengangByUniId(universities);
+        List<StudiengangEntity> studiengangListe = dao.findStudeiengangByUniId(uniId);
         model.addObject("studiengangListe", studiengangListe);
 
-        List<StudienplatzEntity> studienplatzListe = dao.findStudeienplatzByUniId(universities);
+        List<StudienplatzEntity> studienplatzListe = dao.findStudeienplatzByUniId(uniId);
         model.addObject("studienplatzListe", studienplatzListe);
 
-        List<StudentEntity> studentenListe = dao.findStudentByUniversityId2(universities);
+        List<StudentEntity> studentenListe = dao.findStudentByUniversityId(uniId);
         model.addObject("studentenListe", studentenListe);
 
         model.setViewName("views/hochschule");
@@ -113,6 +108,8 @@ public class MVC {
         model.addObject("student", student);
         List<StudiengangEntity> sg = dao.findStudeiengangByStudentId(studentId);
         model.addObject("studiengaenge", sg);
+        List<UniversitaetEntity> unis = dao.findUniversityByStudentId(studentId);
+        model.addObject("unis", unis);
         model.setViewName("views/student");
         return model;
     }
@@ -124,6 +121,7 @@ public class MVC {
         model.addObject("student", student);
         List<StudiengangEntity> sg = dao.findStudeiengangByStudentId(id);
         model.addObject("studiengaenge", sg);
+
         model.setViewName("views/Profil");
         return model;
     }
@@ -150,9 +148,11 @@ public class MVC {
     }
 
     @RequestMapping(value = {"studienplatzliste"}, method = RequestMethod.GET)
-    public ModelAndView studienplatzliste() {
+    public ModelAndView studienplatzliste(@RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
-        List<StudienplatzEntity> studienplatzliste = dao.findAllStudienplaetze();
+        List<StudienplatzEntity> studienplatzliste;
+        if(studentId<0) studienplatzliste = dao.findAllStudienplaetze();
+        else studienplatzliste = dao.findStudeienplatzByStudentId(studentId);
         model.addObject("studienplatzliste", studienplatzliste);
         model.addObject("dao", dao);
         model.setViewName("views/studienplatzliste");
@@ -162,9 +162,9 @@ public class MVC {
     @RequestMapping(value = "studienplatz/studId={studentId}", method = RequestMethod.GET)
     public @ResponseBody ModelAndView studienplatzByStudent(@PathVariable(value="studentId") int id) {
         ModelAndView model = new ModelAndView();
-        StudienplatzEntity studienplatz = dao.findStudeienplatzByStudentId(id);
-        model.addObject("studienplatz", studienplatz);
-        model.setViewName("views/studienplatz");
+        List<StudienplatzEntity> studienplatzliste = dao.findStudeienplatzByStudentId(id);
+        model.addObject("studienplatzliste", studienplatzliste);
+        model.setViewName("views/studienplatzliste");
         return model;
     }
 
@@ -194,6 +194,8 @@ public class MVC {
         model.addObject("erfahrungsbericht", erfahrungsbericht);
         StudentEntity student = dao.findStudentById(erfahrungsbericht.getStudentId());
         model.addObject("student", student);
+        UniversitaetEntity uni = dao.findUniversityByStudentId(student.getId()).get(0);
+        model.addObject("uni",uni);
         model.setViewName("views/erfahrungsbericht");
         return model;
     }
@@ -246,6 +248,7 @@ public class MVC {
         return "redirect:/studienplatz?studienplatzId=" + sp.getId();
 
     }
+
     @RequestMapping(value = {"allData"}, method = RequestMethod.GET)
     public ModelAndView allData() {
         ModelAndView model = new ModelAndView();
