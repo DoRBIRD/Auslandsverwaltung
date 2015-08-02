@@ -83,16 +83,12 @@ public class MVC {
             uniId = university.getId();
         }else university = dao.findUniversityById(uniId);
         model.addObject("university", university);
-
         List<StudiengangEntity> studiengangListe = dao.findStudeiengangByUniId(uniId);
         model.addObject("studiengangListe", studiengangListe);
-
         List<StudienplatzEntity> studienplatzListe = dao.findStudeienplatzByUniId(uniId);
         model.addObject("studienplatzListe", studienplatzListe);
-
         List<StudentEntity> studentenListe = dao.findStudentByUniversityId(uniId);
         model.addObject("studentenListe", studentenListe);
-
         model.setViewName("views/hochschule");
         model.addObject(DAO.class);
         model.addObject("dao", dao);
@@ -159,15 +155,6 @@ public class MVC {
         return model;
     }
 
-    @RequestMapping(value = "studienplatz/studId={studentId}", method = RequestMethod.GET)
-    public @ResponseBody ModelAndView studienplatzByStudent(@PathVariable(value="studentId") int id) {
-        ModelAndView model = new ModelAndView();
-        List<StudienplatzEntity> studienplatzliste = dao.findStudeienplatzByStudentId(id);
-        model.addObject("studienplatzliste", studienplatzliste);
-        model.setViewName("views/studienplatzliste");
-        return model;
-    }
-
     @RequestMapping(value = {"studienplatz"}, method = RequestMethod.GET)
     public ModelAndView studienplatz(@RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId,
                                      @RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
@@ -179,7 +166,15 @@ public class MVC {
         model.setViewName("views/studienplatz");
         return model;
     }
+    @RequestMapping(value = {"studienplatzsichern"}, method = RequestMethod.GET)
+    public String studienplatzsichern(
+            @RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId,
+            @RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId
+    ) {
+        StudienplatzEntity sp = dao.updateStudienplatz(studienplatzId, studentId);
+        return "redirect:/studienplatz?studienplatzId=" + sp.getId();
 
+    }
     @RequestMapping(value = {"erfahrungsberichtliste"}, method = RequestMethod.GET)
     public ModelAndView erfahrungsberichtliste(@RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId) {
         ModelAndView model = new ModelAndView();
@@ -222,8 +217,6 @@ public class MVC {
         ErfahrungsberichtEntity eb = dao.createErfahrungsbericht(betreff, link, inhalt, student);
         return "redirect:/erfahrungsbericht?erfahrungsberichtId="+eb.getId();
     }
-
-
     @RequestMapping(value = {"studiengang"}, method = RequestMethod.GET)
     public ModelAndView studiengangId(@RequestParam(value = "studiengangId", required = false, defaultValue = "-1") int studiengangId) {
         ModelAndView model = new ModelAndView();
@@ -240,37 +233,19 @@ public class MVC {
         model.setViewName("views/studiengangliste");
         return model;
     }
-
-
-    @RequestMapping(value = {"studienplatzsichern"}, method = RequestMethod.GET)
-    public String studienplatzsichern(
-            @RequestParam(value = "studienplatzId", required = false, defaultValue = "-1") int studienplatzId,
-            @RequestParam(value = "studentId", required = false, defaultValue = "-1") int studentId
-    ) {
-        StudienplatzEntity sp = dao.updateStudienplatz(studienplatzId, studentId);
-        return "redirect:/studienplatz?studienplatzId=" + sp.getId();
-
-    }
-
     @RequestMapping(value = {"allData"}, method = RequestMethod.GET)
     public ModelAndView allData() {
         ModelAndView model = new ModelAndView();
-
         List<LandEntity> laenderListe = dao.findAllLands();
         model.addObject("laenderListe", laenderListe);
-
         List<UniversitaetEntity> universities = dao.findAllUniversities();
         model.addObject("universities", universities);
-
         List<StudentEntity> studentenliste = dao.findAllStudents();
         model.addObject("studentenliste", studentenliste);
-
         List<StudiengangEntity> studiengangliste = dao.findAllStudiengaenge();
         model.addObject("studiengangliste", studiengangliste);
-
         List<StudienplatzEntity> studienplatzliste = dao.findAllStudienplaetze();
         model.addObject("studienplatzliste", studienplatzliste);
-
         model.setViewName("views/allData");
         return model;
     }

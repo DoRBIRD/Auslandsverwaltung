@@ -43,27 +43,36 @@
 
 <br>
 <table class="table">
-    <caption>Bietet folgende Studienplätze:</caption>
+    <caption>Liste aller verfügbaren Studienplätze:</caption>
     <thead>
     <tr>
         <th>#</th>
         <th>Start Datum</th>
         <th>End Datum</th>
-        <th>Verfuegbarkeit</th>
-        <th>Student</th>
+        <th>Universität</th>
+        <c:if test="${sessionScope.user.id > 0}">
+            <th>Studienplatz sichern</th>
+        </c:if>
     </tr>
     </thead>
-    <c:forEach var="sp" items="${studienplatzListe}">
-        <tr>
-            <td><a class="btn btn-default" href="/studienplatz?studienplatzId=${sp.id}" role="button">${sp.id}</a></td>
-            <td>${sp.startDatum}</td>
-            <td>${sp.endDatum}</td>
-            <td>${sp.verfuegbarkeit}</td>
-            <td>${dao.findStudentById(sp.id).vorname}</td>
-        </tr>
-    </c:forEach>
-</table>
 
+
+
+    <c:forEach var="sp" items="${studienplatzListe}">
+        <c:if test="${sp.verfuegbarkeit}">
+            <tr>
+                <td><a class="btn btn-default" href="studienplatz?studienplatzId=${sp.id}" role="button">${sp.id}</a> </td>
+                <td>${sp.startDatum}</td>
+                <td>${sp.endDatum}</td>
+                <td><a class="btn btn-default" href="hochschule?hochschulId=${sp.universitaet_id}&studentId=${sessionScope.user.id}" role="button">${dao.findUniversityById(sp.universitaet_id).name}</a></td>
+                <c:if test="${sessionScope.user.id > 0}">
+                    <td><a class="btn btn-default" href="studienplatzsichern?studienplatzId=${sp.id}&studentId=${sessionScope.user.id}" role="button">Studienplatz sichern</a></td>
+                </c:if>
+            </tr>
+        </c:if>
+    </c:forEach>
+
+</table>
 <br>
 <table class="table">
     <caption>Folgende Studenten studieren hier:</caption>
