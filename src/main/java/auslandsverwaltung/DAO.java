@@ -83,6 +83,7 @@ public class DAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from UniversitaetEntity").list();
     }
+
     @Transactional
     public UniversitaetEntity findUniversityById(int universityId) {
         Session session = sessionFactory.getCurrentSession();

@@ -4,6 +4,7 @@
   <jsp:param name="pageName" value="Hochschulliste"/>
 </jsp:include>
 
+
 <table class="table">
   <caption>Liste aller Hochschulen:</caption>
   <thead>
@@ -21,6 +22,7 @@
     </tr>
   </c:forEach>
 </table>
+
 
 <jsp:include page="fragments/footer.jsp" />
 
