@@ -1,9 +1,9 @@
 package auslandsverwaltung;
-import org.hibernate.annotations.Source;
 
-import java.util.List;
-import java.util.Set;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by steven on 15.06.15.

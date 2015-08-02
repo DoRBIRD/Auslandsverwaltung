@@ -1,10 +1,6 @@
 package auslandsverwaltung;
 
-import org.hibernate.annotations.ForeignKey;
-
-import javax.jws.Oneway;
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Created by steven on 15.06.15.
