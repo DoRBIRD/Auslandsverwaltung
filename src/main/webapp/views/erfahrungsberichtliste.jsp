@@ -18,7 +18,7 @@
     <tr><td><a class="btn btn-default" href="/erfahrungsbericht?erfahrungsberichtId=${eb.id}" role="button">${eb.id}</a> </td>
       <td>${eb.betreff}</td>
       <td><a class="btn btn-default" href="${eb.link}" role="button">externer link</a></td>
-      <td><a class="btn btn-default" href="/student?studentenId=${eb.studentId}" role="button">${eb.studentId}</a></td>
+      <td><a class="btn btn-default" href="/student?studentenId=${eb.studentId}" role="button">${eb.student.vorname} ${eb.student.nachname}</a></td>
     </tr>
   </c:forEach>
 </table>
